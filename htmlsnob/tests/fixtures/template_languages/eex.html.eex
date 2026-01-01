@@ -1,0 +1,114 @@
+<test name="basic expressions">
+  <div>
+    <% @greeting %>
+    <% @user.name %>
+  </div>
+</test>
+
+<test name="control structures">
+  <%= for item <- @items do %>
+    <li class="<%= if item.active, do: "active", else: "inactive" %>">
+      <%= item.name %>
+    </li>
+  <% end %>
+</test>
+
+<test name="nested control structures">
+  <%= for group <- @groups do %>
+    <%= if Enum.any?(group.members) do %>
+      <li class="<%= if Enum.at(group.members, 0) == @current, do: "current" %>">
+        <%= group.name %>
+      </li>
+    <% end %>
+  <% end %>
+</test>
+
+<test name="complex expressions">
+  <%= System.get_env("USER") || "unknown" %>
+  <%= @value |> String.upcase() |> String.slice(0..10) %>
+</test>
+
+<test name="pattern matching">
+  <%= case @status do %>
+    <% :success -> %>
+    <span>Success!</span>
+    <% :error -> %>
+    <span>Error!</span>
+  <% end %>
+</test>
+
+<test name="function calls">
+  <%= Enum.join(Enum.map(@items, &(&1.name)), ", ") %>
+</test>
+
+<test name="comments">
+  <%# This is a comment that won't appear in the output %>
+  <%= "Visible text" %>
+</test>
+
+<test name="escaped output">
+  <%= raw "<b>Unescaped HTML</b>" %>
+  <%== "<i>Also unescaped</i>" %>
+</test>
+
+<test name="variable assignment">
+  <% total = Enum.sum(@values) %>
+  <%= total %>
+</test>
+
+<test name="nested data access">
+  <%= @data[:user][:preferences][:theme] || @default_theme %>
+  <%= Enum.at(@items, 0)[:values][Enum.count(@items) - 1] %>
+</test>
+
+<test name="mixed quotes">
+  <%= "It's \"quoted\" and has 'nested' quotes" %>
+  <%= 'Single\'s with "doubles"' %>
+</test>
+
+<test name="string interpolation">
+  <%= "Hello #{@name}, welcome to #{@site}" %>
+</test>
+
+<test name="pipe operator">
+  <%= @text |> String.split() |> Enum.map(&String.capitalize/1) |> Enum.join(" ") %>
+</test>
+
+<test name="code blocks">
+  <% 
+    value = 42
+    formatted = "Value: #{value}"
+  %>
+  <%= formatted %>
+</test>
+
+<test name="comprehensions">
+  <%= for {k, v} <- @map, v > 10 do %>
+    <%= k %>
+    :
+    <%= v %>
+  <% end %>
+</test>
+
+<test name="unicode handling">
+  <%= String.upcase("こんにちは世界") %>
+  <%= for c <- String.graphemes("👋🌍🔥") do %>
+    <%= c %>
+  <% end %>
+</test>
+
+<test name="function definitions">
+  <% double = fn x -> x * 2 end %>
+  <%= double.(21) %>
+</test>
+
+<test name="conditional assignment">
+  <% value = if @condition, do: "Yes", else: "No" %>
+  <%= value %>
+</test>
+
+<test name="module attributes">
+  <%= @page.title %>
+  -
+  <%= @site.name %>
+</test>

@@ -1,0 +1,6 @@
+target/
+.env
+.DS_Store
+htmlsnob_test_data_fetcher/output/
+node_modules/
+TODO.md

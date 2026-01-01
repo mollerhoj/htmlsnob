@@ -1,0 +1,8 @@
+template_language = "none"
+indent_size = 3
+max_line_length = 80
+
+[[rules]]
+kind = "text_requirement"
+severity = "error"
+tags = ["p"]

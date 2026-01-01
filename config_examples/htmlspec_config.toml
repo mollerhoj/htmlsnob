@@ -1,0 +1,20 @@
+# TODO: Go through the spec and setup rules for the following:
+
+
+
+# 1 Use: attribute_name_whitelist_from_htmlspec
+
+# For each tag, use from this list: https://html.spec.whatwg.org/multipage/indices.html#elements-3 + global attributes + event handler attributes
+
+
+# Attributes types:
+# https://html.spec.whatwg.org/multipage/indices.html#elements-3
+# Boolean
+# Integer (non-negative) 
+# Enum
+# Text (Anything)
+
+# Use this table to treat input elements of different types differently https://html.spec.whatwg.org/multipage/input.html
+
+
+

@@ -1,0 +1,146 @@
+<test name="nested control structures">
+  {% for group in groups %}
+    {% if group.members %}
+      <li class="{% if loop.first %} first {% elif loop.last %} last {% endif %}">
+        {{ loop.index }}
+      </li>
+    {% endif %}
+  {% endfor %}
+</test>
+
+<test name="macros and calls">
+  {% macro input(name, value='', type='text') %}
+    <input type="{{ type }}" name="{{ name }}" />
+  {% endmacro %}
+  {{ input('username') }}
+</test>
+
+<test name="whitespace control">
+  <div>
+    {%- if condition -%}
+      {{ value }}
+    {%- endif -%}
+  </div>
+</test>
+
+<test name="else and elif">
+  {%- if condition -%}
+    {{ value }}
+  {% elif %}
+    {{ other_value }}
+  {% else %}
+    {{ fallback_value }}
+  {% endif %}
+</test>
+
+<test name="complex expressions">
+  {% set x = 42 %}
+  <p>{{ x * 2 + (10 if condition else 5) }}</p>
+</test>
+
+<test name="template inheritance">
+  {% extends "base.html" %}
+  {% block content %}
+    <p>Content</p>
+    {{ super() }}
+  {% endblock %}
+</test>
+
+<test name="filters and tests">
+  {{ value|default('Not found')|truncate(20)|upper }}
+  {% if value is defined and value is not none and value is divisibleby 3 %}
+    {{ value }}
+  {% endif %}
+</test>
+
+<test name="nested variables">
+  {{ user.get('preferences', {}).get('theme', default_theme) }}
+  {{ data['items'][0]['values'][loop.index0] }}
+</test>
+
+<test name="inline conditionals">
+  <span class="{{ 'active' if current == page else 'inactive' if visited else 'new' }}">
+    {{ text }}
+  </span>
+</test>
+
+<test name="filter chaining">
+  {{ value|replace('foo', 'bar')|capitalize|trim|truncate(10, true, '...') }}
+</test>
+
+<test name="list comprehension">
+  {% set filtered = [item for item in items if item.active and item.score > 10] %}
+  <span>{{ filtered|length }}</span>
+</test>
+
+<test name="do expressions">
+  {% do namespace.update(counter=namespace.counter+1) %}
+  {{ namespace.counter }}
+</test>
+
+<test name="literal expressions">
+  {{ {'key': 'value', 'nested': {'data': [1, 2, 3]}}
+  ['nested']['data'][1]
+</test>
+
+<test name="custom syntax combinations">
+  {% if (x < y and loop.first) or (caller is defined) -%}
+    {%- include ['items/' + item_type + '.html', 'items/default.html'] ignore missing -%}
+  {% endif %}
+</test>
+
+<test name="expression tests">
+  {% if value is string and value is matching('[a-z]+') %}
+    {{ value }}
+  {% endif %}
+</test>
+
+<test name="multiline statements">
+  {% set complex = {
+    "key": (value ~ "_suffix")|upper if condition else "default"
+  } %}
+</test>
+
+<test name="self-referential variables">
+  {% set ns = namespace(val=1) %}
+  {% set ns.val = ns.val * 2 %}
+  {{ ns.val }}
+</test>
+
+<test name="mixed quoting">
+  {{ "It's \"quoted\" and has 'nested' quotes" }}
+  {{ 'Single\'s with "doubles"' }}
+</test>
+
+<test name="context manipulation">
+  {% with foo = 42, bar = [1, 2, 3] %}
+    {{ foo }}
+    {{ bar[1] }}
+  {% endwith %}
+</test>
+
+<test name="broken html with valid jinja">
+  <div class="{{ cls }}" {% if attrs %} {{ attrs|safe }} {% endif %}>
+  {{ value | replace("</div>", "&lt;/div&gt;") | safe }}
+</test>
+
+<test name="unicode handling">
+  {{ "こんにちは世界" | upper }}
+  {% for char in "👋🌍🔥" %}
+    {{ loop.index }}
+    :
+    {{ char }}
+  {% endfor %}
+</test>
+
+<test name="escaping">
+  {% raw %}
+    {{ This is literally preserved }}
+  {% endraw %}
+</test>
+
+<test name="quoted braces">
+  {{ '{{' }}
+  {{ '}}' }}
+</test>
+

@@ -1,0 +1,115 @@
+<test name="basic variable">
+  <p>
+    Hello,
+    {{name}}
+    !
+  </p>
+</test>
+
+<test name="unescaped variable">
+  <p>{{{ html }}}</p>
+</test>
+
+<test name="escaped braces">
+  <p>Escaped braces: \{{escaped}}</p>
+</test>
+
+<test name="escaped unescaped braces">
+  <p>Escaped raw braces: \{{{raw}}}</p>
+</test>
+
+<test name="section true">
+  {{#isVisible}}
+    <p>Content is visible</p>
+  {{/isVisible}}
+</test>
+
+<test name="section false">
+  {{#isHidden}}
+    <p>Should not render</p>
+  {{/isHidden}}
+</test>
+
+<test name="inverted section true">
+  {{^isEmpty}}
+    <p>Empty state</p>
+  {{/isEmpty}}
+</test>
+
+<test name="list iteration">
+  <ul>
+    {{#items}}
+      <li>{{.}}</li>
+    {{/items}}
+  </ul>
+</test>
+
+<test name="object iteration">
+  <ul>
+    {{#users}}
+      <li>
+        {{name}}
+        -
+        {{email}}
+      </li>
+    {{/users}}
+  </ul>
+</test>
+
+<test name="nested sections">
+  {{#user}}
+    <h2>{{name}}</h2>
+    {{#settings}}
+      <p>{{theme}}</p>
+    {{/settings}}
+  {{/user}}
+</test>
+
+<test name="dotted names">
+  <p>{{user.profile.name}}</p>
+</test>
+
+<test name="attribute interpolation">
+  <div class="{{className}}">Content</div>
+</test>
+
+<test name="multiple interpolations">
+  <p>
+    {{first}}
+    {{second}}
+    {{third}}
+  </p>
+</test>
+
+<test name="partial">
+  {{> header}}
+</test>
+
+<test name="partial inside section">
+  {{#page}}
+    {{> content}}
+  {{/page}}
+</test>
+
+<test name="standalone tags">
+  | This is a line
+  {{#section}}
+  {{/section}}
+  | This is another line
+</test>
+
+<test name="comment">
+  Normal text
+  {{! this is a comment }}
+  More text
+</test>
+
+<test name="braces inside string">
+  <p>{{ "}}" }}</p>
+</test>
+
+<test name="attribute loop workaround">
+  <div {{#attributes}} {{key}}="{{value}}" {{/attributes}}>
+    Dynamic attributes
+  </div>
+</test>

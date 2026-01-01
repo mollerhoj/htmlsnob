@@ -1,0 +1,30 @@
+<test name="basic expressions">
+  <%= 40 + 2 %>
+  <%= @user.name %>
+</test>
+<test name="control structures">
+  <% items.each do |item| %>
+  <li class="<%= item.active? ? 'active' : 'inactive' %>"><%= item.name %></li>
+  <% end %>
+</test>
+<test name="nested control structures">
+  <% groups.each do |group| %>
+  <% if group.members.any? %>
+  <li class="<%= 'current' if group.members.first == current_user %>">
+    <%= group.name %>
+  </li>
+  <% end %>
+  <% end %>
+  <% end %>
+</test>
+<test name="complex expressions">
+  <%= ENV['USER'] || 'unknown' %>
+  <%= value.to_s.upcase[0..10] %>
+</test>
+<test name="method calls">
+  <%= items.map(&:name).join(', ') %>
+</test>
+<test name="comments">
+  <%# This is a comment that wont appear in the output %>
+  <%= 'Visible text' %>
+</test>

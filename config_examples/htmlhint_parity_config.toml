@@ -1,0 +1,121 @@
+template_language = "none"
+indent_size = 2
+max_line_length = 80
+
+# Rules from: https://htmlhint.com/rules/
+# - <html lang="en"></html> must have a lang attributes
+[[rules]]
+kind = "attribute_name_requirement"
+[rules.attributes]
+html = ["lang"]
+
+# - <title> must be present in <head> tag.
+[[rules]]
+kind = "child_requirement"
+[rules.tags]
+head = ["title"]
+
+# - The alt attribute of an img element must be present
+[[rules]]
+kind = "attribute_name_requirement"
+[rules.attributes]
+img = ["alt"]
+
+# - All attribute names must be in lowercase.
+[[rules]]
+kind = "attribute_name_casing_style"
+style = "kebab_case"
+autofix = true
+
+# - Elements cannot have duplicate attributes.
+[[rules]]
+kind = "duplicate_attribute_names_disallowed"
+
+# - Attributes should be sorted in order.
+[[rules]]
+kind = "attributes_order"
+autofix = true
+order = ["class", "id", "name", "src", "for", "type", "href", "value", "title", "alt", "role"]
+
+# - Attribute values must be in double quotes.
+[[rules]]
+kind = "attribute_value_quote_style"
+autofix = true
+style = "double"
+
+# - Attribute values should not contain duplicates.
+[[rules]]
+kind = "duplicate_classes_disallowed"
+autofix = true
+
+# - All attributes must have values.
+[[rules]]
+kind = "boolean_attribute_style"
+style = "no_value"
+attributes = ["checked"]
+autofix = true
+
+# - Attribute values must be in single quotes.
+[[rules]]
+kind = "attribute_value_quote_style"
+autofix = true
+style = "single"
+
+# - The type attribute of a button element must be present with a valid value: “button”, “submit”, or “reset”. (attribute_value_whitelist)
+# - The method attribute of a form element must be present with a valid value: “get”, “post”, or “dialog”.
+[[rules]]
+kind = "attribute_value_whitelist"
+[rules.tags]
+# a.target = ["_blank", "_self", "_parent", "_top"]
+button.type = ["button", "submit", "reset"]
+form.method = ["get", "post", "dialog"]
+
+# - The empty tag should not be closed by self. (Unsure if rule exists)
+
+[[rules]]
+kind = "self_closing_tag_style" 
+style = "closed" # "open"
+tags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "menuitem", "meta", "param", "source", "track", "wbr"]
+
+# - The src attribute of an img(script,link) must have a value.
+[[rules]]
+kind = "attribute_name_requirement"
+[rules.attributes]
+img = ["src", "alt"]
+script = ["src"]
+link = ["src"]
+
+[[rules]]
+kind = "attribute_value_regexp"
+[rules.tags]
+img.alt = ".+"
+img.src = ".+"
+script.src = ".+"
+link.src = ".+"
+
+# - Disallows the use of obsolete HTML tags.
+[[rules]]
+kind = "tag_name_blacklist"
+error_message = "`{tag}` is obsolete"
+tags = ["acronym", "applet", "basefont", "bgsound", "big", "blink", "center", "dir", "font", "frame", "frameset", "isindex", "keygen", "listing", "marquee", "menuitem", "multicol", "nextid", "nobr", "noembed", "noframes", "plaintext", "rb", "rtc", "spacer", "strike", "tt", "xmp"]
+
+# - All HTML element names must be in lowercase.
+[[rules]] 
+kind = "tag_name_casing"
+style = "lower"
+autofix = true
+
+# # # - Tag names can only contain letters, numbers, ”-”, ”:” or ”_”.
+[[rules]]
+kind = "tag_name_regexp"
+regexp = "^[A-Za-z0-9\\-_:]+$"
+
+# # - id-unique: All id attributes must have unique values.
+[[rules]]
+kind = "id_unique"
+
+# - All [ input ] tags must have a corresponding [ label ] tag. (Suggest that input should be nested
+[[rules]]
+kind = "ancestor_requirement"
+[rules.tags]
+input = ["label"]

@@ -1,0 +1,22 @@
+[workspace]
+default-members = ["htmlsnob"]
+
+members = [
+    "htmlsnob",
+    "htmlsnob_lsp",
+    "htmlsnob_cli",
+    "htmlsnob_test_data_fetcher",
+    "htmlsnob_scripts"
+]
+resolver = "2"
+
+[workspace.package]
+name = "htmlsnob"
+authors = ["mollerhoj"]
+edition = "2021"
+version = "0.1.0"
+description = "HTML validator, formatter and autofixer"
+license = "MIT"
+documentation = "https://github.com/mollerhoj/htmlsnob"
+readme = "README.md"
+repository = "https://github.com/mollerhoj/htmlsnob"

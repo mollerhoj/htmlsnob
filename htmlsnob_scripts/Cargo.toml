@@ -1,0 +1,10 @@
+[package]
+name = "htmlsnob_scripts"
+version = { workspace = true }
+edition = { workspace = true }
+
+[dependencies]
+serde = { version = "1.0" }
+serde_json = "1.0"
+toml = "0.8.20"
+regex = "1.11.1"

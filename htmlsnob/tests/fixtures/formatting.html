@@ -1,0 +1,69 @@
+<test name="multi-line attributes">
+  <example>
+    <input type="textarea"
+      style="background_color: red;"
+      id="some-very-long-name-for-an-id"
+      selected
+      class="another-long-name">
+    </input>
+  </example>
+  <expected>
+    <input type="textarea"
+      style="background_color: red;"
+      id="some-very-long-name-for-an-id"
+      selected
+      class="another-long-name">
+    </input>
+  </expected>
+</test>
+
+<test name="multi-line attribute values">
+  <example>
+    <div class="{{#if{{ template_expression }} conditional {{/if}} hello world {{#each person in people}} {{ person.name }} {{/each}}">
+    </div>
+  </example>
+  <expected>
+    <div class="{{#if{{ template_expression }}
+        conditional
+      {{/if}}
+      hello world
+      {{#each person in people}}
+        {{ person.name }}
+      {{/each}}">
+    </div>
+  </expected>
+</test>
+
+<test name="Special-case 1: If there is no close tag, just add a newline and return">
+  <example>
+    <div><p>Hello</div>
+  </example>
+  <expected>
+    <div>
+      <p>
+      Hello
+    </div>
+  </expected>
+</test>
+
+<test name="Special-case 2: If there are no children, format inline">
+  <example>
+    <div><p></p></div>
+  </example>
+  <expected>
+    <div>
+      <p></p>
+    </div>
+  </expected>
+</test>
+
+<test name="Special-case 3: If the only child is a text node or template expression, and it is short enough, format it inline">
+  <example>
+    <div><p>Hello</p></div>
+  </example>
+  <expected>
+    <div>
+      <p>Hello</p>
+    </div>
+  </expected>
+</test>

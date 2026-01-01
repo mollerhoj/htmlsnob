@@ -1,0 +1,28 @@
+# - only allow non-blocking scripts in head (condition on parent)
+# [[rules]] TODO
+# kind = "attribute_name_requirement"
+# condition = "head > script"
+# [rules.attributes]
+# script = ["async"]
+# 
+# # - alt attribute of area[href] and input[type=image] must have a value. (condition on attribute presence)
+# [[rules]] TODO
+# kind = "attribute_name_requirement"
+# condition = "area[href], input[type=image]"
+# [rules.attributes]
+# 'input' = ["alt"]
+# 'area' = ["alt"]
+# 
+# #_ for and commandfor attribute values pointing to an id in the document
+# // Enforces that attribute values point to an existing id in the document.
+# [[rules]]
+# kind = "attribute_value_references_id"
+# severity = "warning"
+# [rules.attributes]
+# form = ["for"]...
+# // Enforces that attribute values are non-negative integers.
+# [[rules]]
+# kind = "attribute_value_non_negative_integer"
+# severity = "warning"
+# [rules.attributes]
+# textarea = ["cols"]

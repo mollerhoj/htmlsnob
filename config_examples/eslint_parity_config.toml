@@ -1,0 +1,69 @@
+template_language = "none"
+indent_size = 2
+max_line_length = 80
+
+# Rules from: https://html-eslint.org/docs/rules
+# Recommended rules from: https://github.com/yeonjuan/html-eslint/blob/main/packages/eslint-plugin/lib/configs/recommended.js
+
+# "html/require-lang": "error",
+[[rules]]
+kind = "attribute_name_requirement"
+[rules.attributes]
+html = ["lang"]
+
+# "html/require-img-alt": "error",
+[[rules]]
+kind = "attribute_name_requirement"
+[rules.attributes]
+img = ["alt"]
+
+# - <title> must be present in <head> tag.
+[[rules]]
+kind = "child_requirement"
+[rules.tags]
+head = ["title"]
+
+# "html/no-multiple-h1": "error",
+[[rules]]
+kind  = "duplicate_elements_blacklist"
+tags = ["title", "html", "head", "body", "main", "h1"]
+
+# "html/id-unique": "error",
+[[rules]]
+kind = "id_unique"
+
+# require-li-container 
+[[rules]]
+kind = "ancestor_requirement"
+severity = "error"
+[rules.tags]
+li = ["ul", "ol", "menu"]
+
+# quotes
+[[rules]]
+kind = "attribute_value_quote_style"
+style = "double"
+autofix = true
+
+# obsolete-attr
+[[rules]]
+kind = "attribute_name_blacklist"
+global_blacklist = ["align", "bgcolor", "border", "marginwidth", "marginheight", "valign", "manifest", "frameborder", "scrolling", "scope"] # TODO support
+[rules.tags]
+div = ["align"]
+
+# require-closing-tags
+[[rules]]
+kind = "self_closing_tag_style"
+style = "closed" 
+tags = [] # TODO: If empty, apply to all elements
+autofix = true
+
+
+# "html/no-duplicate-attrs": "error",
+[[rules]]
+kind = "duplicate_attribute_names_disallowed"
+
+# https://html-eslint.org/docs/rules/use-baseline <- TODO: VERY INTERESTING BUT NO EQUIVALENT YET
+
+# TODO: no-duplicate-in-head: tag-attribute combinations: Missing <meta name="viewport">, <meta charset>, <link rel="canonical">

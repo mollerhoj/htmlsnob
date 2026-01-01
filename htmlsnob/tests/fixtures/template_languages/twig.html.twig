@@ -1,0 +1,129 @@
+<test name="nested control structures">
+  {% for group in groups %}
+    {% if group.members %}
+      <li class="{% if loop.first %} first {% elseif loop.last %} last {% endif %}">
+        {{ loop.index }}
+      </li>
+    {% endif %}
+  {% endfor %}
+</test>
+
+<test name="whitespace control">
+  <div>
+    {{- value -}}
+  </div>
+</test>
+
+<test name="complex expressions">
+  {% set x = 42 %}
+  <p>
+    {{ x * 2 + (condition ? 10 : 5) }}
+  </p>
+</test>
+
+<test name="macros and import">
+  {% macro input(name, value='', type='text') %}
+    <input type="{{ type }}" name="{{ name }}" />
+  {% endmacro %}
+  {{ _self.input('username') }}
+</test>
+
+<test name="template inheritance">
+  {% extends "base.html.twig" %}
+  {% block content %}
+    <p>Content</p>
+    {{ parent() }}
+  {% endblock %}
+</test>
+
+<test name="filters and tests">
+  {{ value|default('Not found')|truncate(20)|upper }}
+  {% if value is defined and value is not null and value is divisible by(3) %}
+    {{ value }}
+  {% endif %}
+</test>
+
+<test name="verbatim and comments">
+  {# This won't appear in the output #}
+  {# " #}
+  {% "%}" %}
+  {% verbatim %}
+    {{ This is literally preserved }}
+  {% endverbatim %}
+</test>
+
+<test name="string interpolation">
+  {{ "Hello #{name}, welcome to #{site}" }}
+</test>
+
+<test name="nested variables">
+  {{ user.preferences.theme|default(default_theme) }}
+  {{ data.items[0].values[loop.index0] }}
+</test>
+
+<test name="embedded functions">
+  {{ min(max(value, 0), 100) }}
+  {{ range(1, 10, 2)|join('-') }}
+</test>
+
+<test name="filter chaining">
+  {{ value|replace({'foo': 'bar'})|capitalize|trim|slice(0, 10) ~ '...' }}
+</test>
+
+<test name="array manipulation">
+  {% set merged = items|merge({'key': 'value'}) %}
+  {{ merged|keys|first }}
+</test>
+
+<test name="spaceless control">
+  {% spaceless %}
+    <div>
+      <span>Extra spaces</span>
+    </div>
+  {% endspaceless %}
+</test>
+
+<test name="}} inside call"> // TODO Bug
+  {{ {'key': 'value', 'nested': {'data': [1, 2, 3]}}.nested.data[1] }}
+</test>
+
+<test name="}} inside string">
+  {{ "}}" }}
+</test>
+
+<test name="set capture">
+  {% set captured %}
+    Multiple lines of content to capture
+  {% endset %}
+  {{ captured|length }}
+</test>
+
+<test name="named arguments">
+  {{ include('template.twig', with_context=false, ignore_missing=true) }}
+</test>
+
+<test name="embedded operators">
+  {{ foo matches '/^[a-z]+$/' ? 'Valid' : 'Invalid' }}
+</test>
+
+<test name="context manipulation">
+  {% with {'foo': 42, 'bar': [1, 2, 3]} %}{{ foo }}{{ bar[1] }}{% endwith %}
+</test>
+
+<test name="import and use">
+  {% import 'macros.twig' as macros %}
+  {% use 'blocks.twig' %}
+</test>
+
+<test name="mixed quoting">
+  {{ "It's \"quoted\" and has 'nested' quotes" }}
+</test>
+
+<test name="unicode handling">
+  {{ "こんにちは世界"|upper }}
+  {% for char in "👋🌍🔥" %}
+    {{ loop.index }}
+    :
+    {{ char }}
+  {% endfor %}
+</test>

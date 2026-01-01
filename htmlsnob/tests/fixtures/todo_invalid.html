@@ -1,0 +1,129 @@
+<test name="missing tag name">
+  <></>
+  -----
+</test>
+
+<test name="unescaped < 2">
+  <p>Hello<</p>
+          -
+</test>
+
+<test name="missing end tag">
+  <p>
+  ---
+</test>
+
+<test name="missing start tag">
+  </p>
+  ----
+</test>
+
+<test name="missing start tag nested">
+  <a>
+    </p>
+    ----
+  </a>
+</test>
+
+<test name="mismatched tags">
+  <a> <p> </a> </p>
+          ----
+</test>
+
+<test name="incorrect nesting">
+  <div><p>Incorrectly nested</div></p>
+                            ------
+</test>
+
+<test name="unescaped &">
+  <p>Hello& World</p>
+          -
+</test>
+
+<test name="attribute name starting with digit">
+  <a 1my-attribute></a>
+     -------------
+</test>
+
+<test name="attribute name containing @">
+  <a my-att@ribute></a>
+     -------------
+</test>
+
+<test name="root closing tag missing end bracket ">
+  <a></a
+     ---
+</test>
+
+<test name="inner closing tag missing end bracket ">
+  <p><a></a</p>
+        ---
+</test>
+
+<test name="double << should be considered text">
+  <<<<a><<<</a>
+  ---   ---
+</test>
+
+<test name="unclosed comment">
+  <!-- Unclosed comment
+  ---------------------
+</test>
+
+<test name="invalid comment syntax">
+  <!- Invalid comment syntax -->
+  ------------------------------
+</test>
+
+<test name="nested comment">
+  <!-- Nested <!-- comment --> -->
+              ----------------
+</test>
+
+<test name="unclosed style tag">
+  <style> body { color: red; }
+  -------
+</test>
+
+<test name="unclosed script tag">
+  <script>
+  --------
+</test>
+
+<test name="stray style tag">
+  </style>
+  --------
+</test>
+
+<test name="missing attribute name">
+  <a ="test"></a>
+    -
+</test>
+
+<test name="whitespace">
+  < a ><b>< /  b  ></a>
+</test>
+
+<test name="error recovery, which tag is wrong?">
+  <a><b></a>
+        ----
+</test>
+
+<test name="unescaped end bracket">
+  <p>Hello> World</p>
+          -
+</test>
+
+<test name="unescaped characters">
+  <p>Unescaped & < > characters in text</p>
+               - - -
+</test>
+
+<test name="attribute value with .">
+  <img src=image.jpg alt="No quotes">
+</test>
+
+<test name="attribute value with :">
+  <div class=test style=color:red;>
+                        ----------
+</test>

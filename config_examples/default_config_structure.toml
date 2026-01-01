@@ -1,0 +1,92 @@
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------- rules: STRUCTURE -----------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Enforces that an element does not have any of the specified ancestor elements at any level.
+[[rules]]
+kind = "ancestor_blacklist"
+severity = "error"
+[rules.tags]
+form = ["form"]
+HEADING = ["HEADING"] 
+INTERACTIVE = ["INTERACTIVE"]
+
+# Enforces that an element has one of the specified ancestor elements at some level.
+[[rules]]
+kind = "ancestor_requirement"
+severity = "error"
+[rules.tags]
+TABLE_PARTS = ["table"]
+col = ["colgroup", "table"]
+li = ["ul", "ol", "menu"]
+option = ["select", "datalist"]
+optgroup = ["select"]
+METADATA = ["head"]
+
+# Enforces that an element does not have any of the specified direct child elements.
+[[rules]]
+kind = "child_blacklist"
+severity = "error"
+[rules.tags]
+# TODO
+
+# Enforces that an element has all of the specified direct child elements.
+[[rules]]
+kind = "child_requirement"
+severity = "error"
+[rules.tags]
+ol = ["li"]
+ul = ["li"]
+menu = ["li"]
+
+# Enforces that an element only has the specified direct child elements.
+[[rules]]
+kind = "child_whitelist"
+severity = "warning"
+[rules.tags]
+ul = ["li"]
+ol = ["li"]
+select = ["option", "optgroup"]
+dl = ["dt", "dd"]
+pre = ["INLINE"]
+head = ["METADATA"]
+INLINE = ["INLINE"]
+
+# Enforces that an element contains all of the specified descendant elements at some depth.
+[[rules]]
+kind = "descendant_requirement"
+severity = "information"
+[rules.tags]
+table = ["tr"]
+select = ["option"] ## Could be nested in optgroup
+details = ["summary"]
+dl = ["dt", "dd"]
+
+# Enforces that the specified elements appear only once in the entire document.
+[[rules]]
+kind = "duplicate_elements_blacklist"
+severity = "error"
+tags = ["html", "head", "body", "title", "main"]
+
+# Enforces that an element has one of the specified direct parent elements.
+[[rules]]
+kind = "parent_whitelist"
+severity = "error"
+[rules.tags]
+html = []
+head = ["html"]
+body = ["html"]
+title = ["head"]
+meta = ["head"]
+li = ["ul", "ol", "menu"]
+dt = ["dl"]
+dd = ["dl"]
+tr = ["table", "thead", "tbody", "tfoot"]
+td = ["tr"]
+th = ["tr"]
+col = ["colgroup"]
+option = ["select", "optgroup", "datalist"]
+optgroup = ["select"]
+summary = ["details"]
+source = ["audio", "video", "picture"]
+track = ["audio", "video"]

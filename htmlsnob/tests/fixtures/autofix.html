@@ -1,0 +1,32 @@
+<test name="autofix quotes">
+  <example>
+    <a src='' alt=""></a>
+  </example>
+  <expected>
+    <a src="" alt=""></a>
+  </expected>
+</test>
+
+<test name="ignore autofix">
+  <example>
+    <!-- ignore below -->
+    <a src='' alt=""></a>
+    <!-- ignore above -->
+    <a src='' alt=""></a>
+  </example>
+  <expected>
+    <!-- ignore below -->
+    <a src='' alt=""></a>
+    <!-- ignore above -->
+    <a src="" alt=""></a>
+  </expected>
+</test>
+
+<test name="class_order">
+  <example>
+    <p class="  flex-row  flex-col  flex  "></p>
+  </example>
+  <expected>
+    <p class="flex flex-col flex-row"></p>
+  </expected>
+</test>

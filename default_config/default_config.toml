@@ -1,0 +1,186 @@
+# # Notes
+# This is the default configuration file for HTML validation rules.
+# 
+# ## Warning Severity Usage
+# - "error" for invalid HTML
+# - "warning" for common best practices
+# - "information" for the snobs strict HTML rules
+# - "hint" Not used
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------- HEADER ---------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+template_language = "none"
+indent_size = 2
+max_line_length = 80
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------- ATTRIBUTES ---------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Unused: attribute_name_blacklist
+
+[[rules]]
+kind = "attribute_name_casing_style"
+style = "kebab_case"
+autofix = true
+
+[[rules]]
+kind = "attribute_name_missing"
+
+# Unused: attribute_name_regexp
+
+[[rules]]
+kind = "attribute_name_requirement"
+[rules.attributes]
+html = ["lang"]
+img = ["src", "alt"]
+iframe = ["src"]
+track = ["src"]
+label = ["for"]
+a = ["href"]
+link = ["rel", "href"]
+script = ["src"]
+
+# Seperate file: attribute_name_whitelist
+
+[[rules]]
+kind = "attribute_value_casing_style"
+autofix = true
+style = "kebab_case"
+
+[[rules]]
+kind = "attribute_value_quote_style"
+autofix = true
+style = "double"
+
+# Unused: attribute_value_regexp
+
+[[rules]]
+kind = "attribute_value_whitelist"
+[rules.tag_attributes]
+input.autocomplete = ["on", "off"]
+select.autocomplete = ["on", "off"]
+textarea.autocomplete = ["on", "off"]
+dialog.closedby = ["any", "closerequest", "none"]
+input.colorspace = ["limited-srgb", "display-p3"]
+button.command = ["toggle-popover", "show-popover", "hide-popover", "close", "request-close", "show-modal", "--.+"]
+form.enctype = ["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"]
+audio.crossorigin = ["anonymous", "use-credentials", ""]
+img.crossorigin = ["anonymous", "use-credentials", ""]
+link.crossorigin = ["anonymous", "use-credentials", ""]
+script.crossorigin = ["anonymous", "use-credentials", ""]
+video.crossorigin = ["anonymous", "use-credentials", ""]
+img.decoding = ["async", "sync", "auto"]
+button.formmethod = ["get", "post", "dialog"]
+input.formmethod = ["get", "post", "dialog"]
+img.fetchpriority = ["high", "low", "auto"]
+link.fetchpriority = ["high", "low", "auto"]
+script.fetchpriority = ["high", "low", "auto"]
+meta.http-equiv = ["content-type", "default-style", "refresh", "x-ua-compatible", "content-security-policy"]
+track.kind = ["subtitles", "captions", "descriptions", "chapters", "metadata"]
+iframe.loading = ["eager", "lazy"]
+img.loading = ["eager", "lazy"]
+form.method = ["get", "post", "dialog"]
+button.popovertargetaction = ["show", "hide", "toggle"]
+input.popovertargetaction = ["show", "hide", "toggle"]
+audio.preload = ["none", "metadata", "auto", ""]
+video.preload = ["none", "metadata", "auto", ""]
+th.scope = ["row", "col", "rowgroup", "colgroup"]
+area.shape = ["circle", "default", "poly", "rect"]
+button.type = ["submit", "reset", "button"]
+input.type = ["button", "checkbox", "color", "date", "datetime-local", "email", "file", "hidden", "image", "month", "number", "password", "radio", "range", "reset", "search", "submit", "tel", "text", "time", "url", "week"]
+ol.type = ["1", "a", "A", "i", "I"]
+textarea.wrap = ["soft", "hard"]
+[rules.global_attributes]
+autocapitalize = ["on", "off", "none", "sentences", "words", "characters"]
+autocorrect = ["on", "off"]
+contenteditable = ["true", "false", "plaintext-only", ""]
+dir = ["ltr", "rtl", "auto"]
+draggable = ["true", "false"]
+enterkeyhint = ["enter", "done", "go", "next", "previous", "search", "send"]
+hidden = ["until-found", "hidden", ""]
+inputmode = ["none", "text", "tel", "url", "email", "numeric", "decimal", "search"]
+popover = ["auto", "manual", "hint", ""]
+spellcheck = ["true", "false", ""]
+writingsuggestions = ["true", "false", ""]
+
+[[rules]]
+kind = "attributes_order"
+order = ["class", "id", "name", "src", "for", "type", "href", "value", "title", "alt", "role"] # Same order as HtmlHint uses.
+
+[[rules]]
+kind = "boolean_attribute_style"
+style = "no_value"
+attributes = ["allowfullscreen", "alpha", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer", "disabled", "formnovalidate", "inert", "ismap", "itemscope", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected", "shadowrootclonable", "shadowrootcustomelementregistry", "shadowrootdelegatesfocus", "shadowrootserializable"]
+
+[[rules]]
+kind = "duplicate_attribute_names_disallowed"
+
+[[rules]]
+kind = "class_name_casing_style"
+case_style = "kebab_case"
+
+# Seperate file: class_order
+
+[[rules]]
+kind = "duplicate_classes_disallowed"
+
+[[rules]]
+kind = "id_casing_style"
+style = "kebab_case"
+autofix = true
+
+[[rules]]
+kind = "id_unique"
+
+[[rules]]
+kind = "text_disallowed"
+tags = ["address", "colgroup", "datalist", "dl", "figure", "head", "html", "map", "menu", "ol", "optgroup", "picture", "ruby", "search", "select", "table", "tbody", "template", "tfoot", "thead", "tr", "ul"]
+
+# Unused: text_regexp
+
+[[rules]]
+kind = "text_requirement"
+tags = ["abbr", "b", "cite", "code", "em", "h1", "h2", "h3", "h4", "h5", "h6", "i", "label", "mark", "p", "q", "small", "strong", "u"]
+
+
+# TODO: All structure rules go here
+
+# This is way more convoluted: Each html element seems to have it's own exceptions, and we also need to deal with "transparent elements"
+# [[rules]]
+# kind = "descendant_whitelist"
+# p = [PHRASING]
+
+[[rules]]
+kind = "missing_close_tag_disallowed"
+except_tags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"] # void elements
+
+[[rules]]
+kind = "missing_end_bracket_disallowed"
+
+[[rules]]
+kind = "missing_open_tag_disallowed"
+
+[[rules]]
+kind = "self_closing_tag_style"
+style = "closed" 
+tags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"] # void elements
+
+[[rules]]
+error_message = "Tag `{name}` is deprecated."
+kind = "tag_name_blacklist"
+tags = ["applet", "acronym", "bgsound", "dir", "frame", "frameset", "noframes", "isindex", "keygen", "listing", "menuitem", "nextid", "noembed", "param", "plaintext", "rb", "rtc", "strike", "xmp", "basefont", "big", "blink", "center", "font", "marquee", "multicol", "nobr", "spacer", "tt"]
+
+[[rules]]
+kind = "tag_name_casing"
+style = "lower"
+
+[[rules]]
+kind = "tag_name_regexp"
+regexp = "^[A-Za-z][A-Za-z0-9.-]*$"
+
+[[rules]]
+kind = "tag_name_whitelist"
+tags = ["a", "abbr", "address", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "dt", "em", "embed", "fencedframe", "fieldset", "figcaption", "figure", "footer", "form", "h1","h2","h3","h4","h5","h6", "head", "header", "hgroup", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "label", "legend", "li", "link", "main", "map", "math", "mark", "menu", "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "p", "picture", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "search", "section", "select", "selectedcontent", "slot", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "svg", " table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var", "video", "wbr"]

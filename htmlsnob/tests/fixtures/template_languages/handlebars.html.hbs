@@ -1,0 +1,65 @@
+<test name="handlebars if statement">
+  {{#if true}}
+    <p>True</p>
+  {{/if}}
+</test>
+<test name="if else">
+  {{#if user}}
+    <h2>
+      Welcome,
+      {{user.name}}
+      !
+    </h2>
+  {{else}}
+    <h2>Please log in</h2>
+  {{/if}}
+</test>
+<test name="inside div">
+  <div>
+    {{#if false}}
+      <p>False</p>
+    {{/if}}
+  </div>
+</test>
+<test name="escaping">
+  <div>
+    {{content}}
+    <!-- HTML escaped -->
+    {{{rawContent}}}
+    <!-- Not escaped, renders HTML -->
+  </div>
+</test>
+<test name="escaped brackes">
+  <p>Text with \{{escaped}} braces</p>
+</test>
+<test name="escaped raw brackes">
+  <p>Text with \{{{escaped raw}}} braces</p>
+</test>
+<test name="dynamic attribute value">
+  <div class="{{className}}">Content</div>
+</test>
+<test name="conditional attribute value">
+  <div class="{{#if isActive}} active {{/if}}">Content</div>
+</test>
+<test name="dynamic attribute">
+  <div {{ 'myAttribute' }}>Content</div>
+</test>
+<test name="conditional attribute">
+  <div {{#if isActive}} class="active" {{/if}}>Content</div>
+</test>
+<test name="attribute loop">
+  <div {{#each attributes}} {{@key}}="{{this}}" {{/each}}>Content</div>
+</test>
+<test name="escaping helpers">
+  <div data-template="\\{{escaped}}"
+    data-json="{&quot;key&quot;: &quot; {{value}} &quot;}"
+    data-mixed="part1\{{notAHelper}}part2 {{actualHelper}}">
+    Text with \{{escaped}} braces.
+    Text with
+    {{unescaped}}
+    braces.
+  </div>
+</test>
+<test name="quoted end braces">
+  {{ "}}" }}
+</test>

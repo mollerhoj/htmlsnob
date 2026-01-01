@@ -1,0 +1,9 @@
+[package]
+name = "htmlsnob_rules"
+version = { workspace = true }
+edition = { workspace = true }
+
+[dependencies]
+htmlsnob = { path = "../htmlsnob" }
+serde = { version = "1.0", features = ["derive"] }
+regex = "1.11.1"

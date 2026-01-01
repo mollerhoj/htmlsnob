@@ -1,0 +1,484 @@
+[[rules]]
+kind = "attribute_name_whitelist"
+globals = [
+    "accesskey",
+    "anchor",
+    "autocapitalize",
+    "autocorrect",
+    "autofocus",
+    "class",
+    "contenteditable",
+    "data-*",
+    "dir",
+    "draggable",
+    "enterkeyhint",
+    "exportparts",
+    "hidden",
+    "id",
+    "inert",
+    "inputmode",
+    "is",
+    "itemid",
+    "itemprop",
+    "itemref",
+    "itemscope",
+    "itemtype",
+    "lang",
+    "nonce",
+    "part",
+    "popover",
+    "role",
+    "slot",
+    "spellcheck",
+    "style",
+    "tabindex",
+    "title",
+    "translate",
+    "virtualkeyboardpolicy",
+    "writingsuggestions",
+    "onabort",
+    "onauxclick",
+    "onbeforeinput",
+    "onbeforematch",
+    "onbeforetoggle",
+    "oncancel",
+    "oncanplay",
+    "oncanplaythrough",
+    "onchange",
+    "onclick",
+    "onclose",
+    "oncommand",
+    "oncontextlost",
+    "oncontextmenu",
+    "oncontextrestored",
+    "oncopy",
+    "oncuechange",
+    "oncut",
+    "ondblclick",
+    "ondrag",
+    "ondragend",
+    "ondragenter",
+    "ondragleave",
+    "ondragover",
+    "ondragstart",
+    "ondrop",
+    "ondurationchange",
+    "onemptied",
+    "onended",
+    "onformdata",
+    "oninput",
+    "oninvalid",
+    "onkeydown",
+    "onkeypress",
+    "onkeyup",
+    "onloadeddata",
+    "onloadedmetadata",
+    "onloadstart",
+    "onmousedown",
+    "onmouseenter",
+    "onmouseleave",
+    "onmousemove",
+    "onmouseout",
+    "onmouseover",
+    "onmouseup",
+    "onpaste",
+    "onpause",
+    "onplay",
+    "onplaying",
+    "onprogress",
+    "onratechange",
+    "onreset",
+    "onscrollend",
+    "onsecuritypolicyviolation",
+    "onseeked",
+    "onseeking",
+    "onselect",
+    "onslotchange",
+    "onstalled",
+    "onsubmit",
+    "onsuspend",
+    "ontimeupdate",
+    "ontoggle",
+    "onvolumechange",
+    "onwaiting",
+    "onwebkitanimationend",
+    "onwebkitanimationiteration",
+    "onwebkitanimationstart",
+    "onwebkittransitionend",
+    "onwheel",
+]
+
+[rules.tags]
+a = [
+    "download",
+    "href",
+    "hreflang",
+    "ping",
+    "referrerpolicy",
+    "rel",
+    "target",
+    "type",
+]
+abbr = []
+address = []
+area = [
+    "alt",
+    "coords",
+    "download",
+    "href",
+    "ping",
+    "referrerpolicy",
+    "rel",
+    "shape",
+    "target",
+]
+article = []
+aside = []
+audio = [
+    "autoplay",
+    "controls",
+    "crossorigin",
+    "loop",
+    "muted",
+    "preload",
+    "src",
+]
+b = []
+base = [
+    "href",
+    "target",
+]
+bdi = []
+bdo = []
+blockquote = ["cite"]
+body = [
+    "onafterprint",
+    "onbeforeprint",
+    "onbeforeunload",
+    "onhashchange",
+    "onlanguagechange",
+    "onmessage",
+    "onmessageerror",
+    "onoffline",
+    "ononline",
+    "onpagehide",
+    "onpageshow",
+    "onpopstate",
+    "onrejectionhandled",
+    "onstorage",
+    "onunhandledrejection",
+    "onunload",
+]
+br = []
+button = [
+    "disabled",
+    "form",
+    "formaction",
+    "formenctype",
+    "formmethod",
+    "formnovalidate",
+    "formtarget",
+    "name",
+    "type",
+    "value",
+]
+canvas = [
+    "height",
+    "width",
+]
+caption = []
+cite = []
+code = []
+col = ["span"]
+colgroup = ["span"]
+data = ["value"]
+datalist = []
+dd = []
+del = [
+    "cite",
+    "datetime",
+]
+details = ["open"]
+dfn = []
+dialog = ["open"]
+div = []
+dl = []
+dt = []
+em = []
+embed = [
+    "any",
+    "height",
+    "src",
+    "type",
+    "width",
+]
+fieldset = [
+    "disabled",
+    "form",
+    "name",
+]
+figcaption = []
+figure = []
+footer = []
+form = [
+    "accept-charset",
+    "action",
+    "autocomplete",
+    "enctype",
+    "method",
+    "name",
+    "novalidate",
+    "target",
+]
+h1 = []
+h2 = []
+h3 = []
+h4 = []
+h5 = []
+h6 = []
+head = []
+header = []
+hgroup = []
+hr = []
+html = ["manifest"]
+i = []
+iframe = [
+    "allow",
+    "allowfullscreen",
+    "allowpaymentrequest",
+    "height",
+    "name",
+    "referrerpolicy",
+    "sandbox",
+    "src",
+    "srcdoc",
+    "width",
+]
+img = [
+    "alt",
+    "crossorigin",
+    "decoding",
+    "height",
+    "ismap",
+    "loading",
+    "referrerpolicy",
+    "sizes",
+    "src",
+    "srcset",
+    "usemap",
+    "width",
+]
+input = [
+    "accept",
+    "alt",
+    "autocomplete",
+    "checked",
+    "dirname",
+    "disabled",
+    "form",
+    "formaction",
+    "formenctype",
+    "formmethod",
+    "formnovalidate",
+    "formtarget",
+    "height",
+    "list",
+    "max",
+    "maxlength",
+    "min",
+    "minlength",
+    "multiple",
+    "name",
+    "pattern",
+    "placeholder",
+    "readonly",
+    "required",
+    "size",
+    "src",
+    "step",
+    "type",
+    "value",
+    "width",
+]
+ins = [
+    "cite",
+    "datetime",
+]
+kbd = []
+label = ["for"]
+legend = []
+li = ["value"]
+link = [
+    "as",
+    "crossorigin",
+    "href",
+    "hreflang",
+    "imagesizes",
+    "imagesrcset",
+    "integrity",
+    "media",
+    "referrerpolicy",
+    "rel",
+    "sizes",
+    "type",
+]
+main = []
+map = ["name"]
+mark = []
+math = ["per [MATHML]"]
+menu = []
+meta = [
+    "charset",
+    "content",
+    "http-equiv",
+    "name",
+]
+meter = [
+    "high",
+    "low",
+    "max",
+    "min",
+    "optimum",
+    "value",
+]
+nav = []
+noscript = []
+object = [
+    "data",
+    "form",
+    "height",
+    "name",
+    "type",
+    "usemap",
+    "width",
+]
+ol = [
+    "reversed",
+    "start",
+    "type",
+]
+optgroup = [
+    "disabled",
+    "label",
+]
+option = [
+    "disabled",
+    "label",
+    "selected",
+    "value",
+]
+output = [
+    "for",
+    "form",
+    "name",
+]
+p = []
+param = [
+    "name",
+    "value",
+]
+picture = []
+pre = []
+progress = [
+    "max",
+    "value",
+]
+q = ["cite"]
+rp = []
+rt = []
+ruby = []
+s = []
+samp = []
+script = [
+    "async",
+    "crossorigin",
+    "defer",
+    "integrity",
+    "referrerpolicy",
+    "src",
+    "type",
+]
+section = []
+select = [
+    "autocomplete",
+    "disabled",
+    "form",
+    "multiple",
+    "name",
+    "required",
+    "size",
+]
+slot = ["name"]
+small = []
+source = [
+    "media",
+    "sizes",
+    "src",
+    "srcset",
+    "type",
+]
+span = []
+strong = []
+style = ["media"]
+sub = []
+summary = []
+sup = []
+svg = ["per [SVG]"]
+table = []
+tbody = []
+td = [
+    "colspan",
+    "headers",
+    "rowspan",
+]
+template = []
+textarea = [
+    "cols",
+    "dirname",
+    "disabled",
+    "form",
+    "maxlength",
+    "minlength",
+    "name",
+    "placeholder",
+    "readonly",
+    "required",
+    "rows",
+    "wrap",
+]
+tfoot = []
+th = [
+    "abbr",
+    "colspan",
+    "headers",
+    "rowspan",
+    "scope",
+]
+thead = []
+time = ["datetime"]
+title = []
+tr = []
+track = [
+    "default",
+    "kind",
+    "label",
+    "src",
+    "srclang",
+]
+u = []
+ul = []
+var = []
+video = [
+    "autoplay",
+    "controls",
+    "crossorigin",
+    "height",
+    "loop",
+    "muted",
+    "playsinline",
+    "poster",
+    "preload",
+    "src",
+    "width",
+]
+wbr = []

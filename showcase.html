@@ -1,0 +1,21 @@
+<html> -- Missing required attributes: lang
+  <body>
+    <p ="my-class">Hello World</p> -- Attribute name missing, expected a name before the = sign
+    <p Class="my-class">Hello World</p> -- Attribute name `Class` should be in kebab-case, change to `class`
+    <canvas xyz></canvas> -- `xyz` not allowed, must be a global attribute or: `height, width`
+    <p class="myClass">Hello World</p> -- Attribute value `myClass` should be in kebab-case, change to `my-class`
+    <p class='my-class'>Hello World</p> -- Attribute value must be quoted with ""
+    <button type="clickable"></button> -- Attribute value `clickable` must be one of `submit, reset, button`
+    <p id="my-id" class="my-class">Hello World</p> -- Attribute `class` must be before `id`
+    <input checked="true" /> -- Boolean Attribute must have no value `checked`
+    <p class="my-class" class="another-class">Hello World</p> -- Attribute "class" appears more than once
+    <p class="flex-row flex">Hello World</p> -- `flex` must be before `flex-row`
+    <p id="SomeId">Hello World</p> -- Attribute value `SomeId` should be in kebab-case, change to `some-id`
+    <p id="a">Hello World</p><span id="a"></span> -- id value `a` is used more than once
+    <ul>Hello World<li></li></ul> -- `ul` tags must not contain text content
+    <p>  </p> -- `p` tags must contain text
+    <homemade> </homemade> -- Tag `homemade` is not allowed
+    <1-p></1-p> -- Tag name `1-p` must match the regexp `^[A-Za-z][A-Za-z0-9.-]*$`
+    <P></P> -- Tag name "P" should be in lowercase, change to "p"
+  </body>
+</html>

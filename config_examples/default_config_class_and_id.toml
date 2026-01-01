@@ -1,0 +1,64 @@
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------- rules: CLASS AND ID --------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#        # Enforces that an element does not have any of the specified class names.
+#        [[rules]]
+#        kind = "class_blacklist"
+#        severity = "warning"
+#        [rules.tags]
+#        script = ["text-center", "color-red"] # Example of styling that shouldn't be applied to script
+#        meta = ["hidden", "visible"] # Meta tags shouldn't have these classes
+#        
+#        # Enforces that all class names match a specified casing style.
+#        [[rules]]
+#        kind = "class_name_casing_style"
+#        severity = "warning"
+#        autofix = true
+#        style = "kebab_case"
+#        
+#        # Enforces that all class names match a specified regular expression.
+#        [[rules]]
+#        kind = "class_name_regexp"
+#        severity = "information"
+#        regexp = "^[a-z][a-z0-9-]*$"
+#        
+#        # Enforces that all class names are in a specified order.
+#        [[rules]]
+#        kind = "class_order"
+#        severity = "hint"
+#        autofix = true
+#        order = ["flex", "flex-col", "flex-row", "items-.*", "justify-.*", "p-.*", "m-.*", "text-.*", "bg-.*", "border-.*"]
+#        
+#        # Enforces that an element has one of the specified class names.
+#        [[rules]]
+#        kind = "class_requirement"
+#        severity = "information"
+#        [rules.tags]
+#        nav = ["navigation", "navbar", "nav-container"] # Common navigation class names
+#        footer = ["footer", "site-footer", "page-footer"] # Common footer class names
+#        
+#        # Enforces that an element only has the specified class names.
+#        [[rules]]
+#        kind = "class_whitelist"
+#        severity = "information"
+#        [rules.tags]
+#        button = ["btn", "btn-primary", "btn-secondary", "btn-success", "btn-danger", "btn-warning", "btn-info", "btn-light", "btn-dark"]
+#        
+#        # Enforces that no element has the same class name more than once.
+#        [[rules]]
+#        kind = "duplicate_classes_disallowed"
+#        severity = "error"
+#        
+#        # Enforces that all ids match a specified casing style.
+#        [[rules]]
+#        kind = "id_casing_style"
+#        severity = "warning"
+#        autofix = true
+#        style = "kebab_case"
+#        
+#        # Enforces that all ids match a specified regular expression.
+#        [[rules]]
+#        kind = "id_regexp"
+#        severity = "information"
+#        regexp = "^[a-zA-Z][a-zA-Z0-9_-]*$"

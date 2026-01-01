@@ -1,0 +1,91 @@
+<test name="basic expressions">
+  <%= 40 + 2 %>
+  <%= user.name %>
+</test>
+
+<test name="control structures">
+  <% items.forEach(function(item) { %>
+    <li class="<%= item.active ? 'active' : 'inactive' %>"><%= item.name %></li>
+  <% }); %>
+</test>
+
+<test name="nested control structures">
+  <% groups.forEach(function(group) { %><% if (group.members.length > 0) { %>
+    <li class="<%= group.members[0] === current ? 'current' : '' %>"><%= group.name %></li>
+  <% } %><% }); %>
+</test>
+
+<test name="complex expressions">
+  <%= process.env.USER || 'unknown' %>
+  <%= value.toString().toUpperCase().slice(0, 10) %>
+</test>
+
+<test name="conditional expressions">
+  <%= status === 'success' ? '<span>Success!</span>' : '<span>Error!</span>' %>
+</test>
+
+<test name="function calls">
+  <%= items.map(item => item.name).join(', ') %>
+</test>
+
+<test name="comments">
+  <%# This is a comment that won't appear in the output %>
+  <%- 'Visible text' %>
+</test>
+
+<test name="unescaped output">
+  <%- "<b>Unescaped HTML</b>" %>
+</test>
+
+<test name="javascript in tags">
+  <% const total = values.reduce((sum, val) => sum + val, 0); %>
+  <%= total %>
+</test>
+
+<test name="nested data access">
+  <%= (data.user && data.user.preferences && data.user.preferences.theme) || defaultTheme %>
+  <%= items[0]?.values?.[items.length - 1] %>
+</test>
+
+<test name="mixed quotes">
+  <%= "It's \"quoted\" and has 'nested' quotes" %>
+  <%= 'Single\'s with "doubles"' %>
+</test>
+
+<test name="multiline js">
+  <% 
+    const value = 42;
+    const formatted = `Value: ${value}`;
+  %><%= formatted %>
+</test>
+
+<test name="template literals">
+  <%= `Hello ${name}, welcome to ${site}` %>
+</test>
+
+<test name="array methods">
+  <%= items.filter(i => i.active).map(i => i.name).join(' - ') %>
+</test>
+
+<test name="include directive">
+  <%- include('partials/header', { title: pageTitle }) %>
+</test>
+
+<test name="destructuring">
+  <% const { title, description } = page; %>
+  <%= title %> - <%= description %>
+</test>
+
+<test name="unicode handling">
+  <%= "こんにちは世界".toUpperCase() %>
+  <% [...'👋🌍🔥'].forEach(c => { %><%= c %><% }); %>
+</test>
+
+<test name="arrow functions">
+  <% const double = x => x * 2; %>
+  <%= double(21) %>
+</test>
+
+<test name="optional chaining">
+  <%= user?.profile?.settings?.theme ?? 'default' %>
+</test>

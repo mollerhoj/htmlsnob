@@ -1,0 +1,36 @@
+# # Notes
+# This is the default configuration file for HTML validation rules.
+# 
+# ## Warning Severity Usage
+# - "error" for invalid HTML
+# - "warning" for common best practices
+# - "information" for the snobs strict HTML rules
+# - "hint" Not used
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------- HEADER ---------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+template_language = "none"
+indent_size = 2
+max_line_length = 80
+
+## Tag categories for reusable lists
+[expansions]
+INLINE = ["a", "abbr", "b", "bdi", "bdo", "br", "button", "cite", "code", "data", "datalist", "dfn", "em", "i", "input", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "u", "var", "wbr"]
+BLOCK = ["address", "article", "aside", "blockquote", "details", "dialog", "div", "dl", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "ol", "p", "pre", "section", "table", "ul"]
+SELF_CLOSING = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]
+RAW_TEXT = ["script", "style"]
+DEPRECATED = ["acronym", "applet", "basefont", "big", "center", "dir", "font", "frame", "frameset", "noframes", "strike", "tt"]
+HEADING = ["h1", "h2", "h3", "h4", "h5", "h6"]
+TABLE_PARTS = ["caption", "colgroup", "thead", "tbody", "tfoot", "tr", "td", "th"]
+METADATA = ["base", "link", "meta", "noscript", "script", "style", "title"]
+FORM_ELEMENTS = ["button", "fieldset", "input", "label", "legend", "meter", "optgroup", "option", "output", "progress", "select", "textarea"]
+SECTIONING = ["article", "aside", "footer", "header", "main", "nav", "section"]
+MEDIA = ["audio", "canvas", "embed", "iframe", "img", "object", "picture", "svg", "video"]
+INTERACTIVE = ["a", "button", "details", "embed", "iframe", "input", "label", "select", "textarea",]
+
+
+[expansions]
+PHRASING = ["abbr", "audio", "b", "bdi", "bdo", "br", "button", "canvas", "cite", "code", "data", "datalist", "dfn", "em", "embed", "i", "iframe", "img", "input", "kbd", "label", "mark", "math", "meter", "noscript", "object", "output", "picture", "progress", "q", "ruby", "s", "samp", "script", "select", "slot", "small", "span", "strong", "sub", "sup", "svg", "template", "textarea", "time", "u", "var", "video", "wbr"] # + plain text and custom elements
+

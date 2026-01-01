@@ -1,0 +1,104 @@
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------- rules: ATTRIBUTES ----------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Unused rule: "attribute_name_blacklist"
+# Enforces that an element does not have any of the specified attributes.
+
+# Enforces that an elements specfied attribute does not have any of the specified values.
+[[rules]]
+kind = "attribute_value_blacklist"
+severity = "error"
+# TODO
+
+# Enforces that all attribute values match a specified casing style.
+[[rules]]
+kind = "attribute_value_casing_style"
+severity = "information"
+autofix = true
+style = "kebab_case"
+attributes = ["class", "id"]
+
+# Enforces that no attribute values are just empty quotes.
+[[rules]]
+kind = "attribute_value_empty_quotes_disallowed"
+severity = "warning"
+
+# Enforces that all attribute values use the same quote style.
+[[rules]]
+kind = "attribute_value_quote_style"
+severity = "warning"
+autofix = true
+style = "double"
+
+# Enforces that all attribute values match a specified regular expression.
+[[rules]]
+kind = "attribute_value_regexp"
+severity = "information"
+[rules.attributes]
+id = "^[a-zA-Z][a-zA-Z0-9_-]*$"
+class = "^[a-zA-Z][a-zA-Z0-9_-]*$"
+href = "^(?!javascript:).*$"
+
+# Enforces that an elements specified attribute has one of the specified values.
+[[rules]]
+kind = "attribute_value_whitelist"
+severity = "warning"
+[rules.tags]
+a.rel = ["noopener", "noreferrer", "nofollow", "stylesheet", "icon", "manifest", "apple-touch-icon"]
+a.target = ["_blank", "_self", "_parent", "_top"]
+script.loading = ["lazy", "eager"]
+script.decoding = ["async", "sync", "auto"]
+input.type = ["text", "password", "checkbox", "radio", "submit", "reset", "button", "color", "date", "datetime-local", "email", "file", "hidden", "image", "month", "number", "range", "search", "tel", "time", "url", "week"]
+
+
+# Enforces that all attributes are in a specified order.
+[[rules]]
+kind = "attributes_order"
+severity = "information"
+autofix = true
+order = ["id", "class", "name", "data-*", "src", "for", "type", "href", "value", "title", "alt", "role", "aria-*"]
+
+# Enforces that no attributes appear more than once in the same element.
+[[rules]]
+kind = "duplicate_attribute_names_disallowed"
+severity = "error"
+
+# Enforces that all attribute names match a specified casing style.
+[[rules]]
+kind = "attribute_name_casing_style"
+severity = "warning"
+autofix = true
+style = "kebab_case"
+
+# Enforces that no attributes names are empty.
+[[rules]]
+kind = "attribute_name_missing"
+severity = "error"
+
+# Enforces that all attribute names match a specified regular expression.
+[[rules]]
+kind = "attribute_name_regexp"
+severity = "information"
+regexp = "^[a-z][a-z0-9-:]*$"
+
+# Enforces that an element has all of the specified attributes.
+[[rules]]
+kind = "attribute_name_requirement"
+severity = "error"
+[rules.tags]
+# Only truly required attributes per HTML spec
+img = ["alt"]  # alt is required on images
+input = ["type"]  # type is required (defaults to text if omitted, but technically required)
+area = ["alt"]  # alt is required for area elements
+optgroup = ["label"]  # label is required for optgroup
+# track = ["kind", "srclang"] -- either is required, but not both
+
+# Enforces that an element only has the specified attributes.
+[[rules]]
+kind = "attribute_name_whitelist"
+severity = "information"
+[rules.tags]
+img = ["src", "alt", "width", "height", "class", "id", "loading", "decoding"]
+a = ["href", "rel", "target", "class", "id", "title"]
+input = ["type", "name", "value", "placeholder", "required", "disabled", "readonly", "checked", "class", "id"]

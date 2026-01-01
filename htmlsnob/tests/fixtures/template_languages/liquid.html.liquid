@@ -1,0 +1,183 @@
+<test name="nested control structures">
+  {% for group in groups %}
+    {% if group.members %}
+      <li class="{% if forloop.first %} first {% elsif forloop.last %} last {% endif %}">
+        {{ forloop.index }}
+      </li>
+    {% endif %}
+  {% endfor %}
+</test>
+
+<test name="macros and calls">
+  {%- assign name = "username" -%}
+  {% include "input.liquid" %}
+</test>
+
+<test name="whitespace control">
+  <div>
+    {% if status == 'new' %}
+      {{ value | strip }}
+    {% elsif status == 'pending' %}
+      Pending...
+    {% else %}
+      Unknown
+    {% endif %}
+  </div>
+</test>
+
+<test name="complex expressions">
+  {% assign x = 42 %}
+  <p>{{ x | times: 2 | plus: condition | default: 5 }}</p>
+</test>
+
+<test name="template inheritance">
+  {% comment %}
+    Liquid does not support template inheritance like Jinja2.
+    This must be emulated via includes and layout settings depending on the environment (e.g., Jekyll or Shopify).
+  {% endcomment %}
+  {% layout "base" %}
+</test>
+
+<test name="filters and tests">
+  {{ value | default: "Not found" | truncate: 20 | upcase }}
+  {% if value %}
+    {% assign remainder = value | modulo: 3 %}
+    {% if remainder == 0 %}
+      {{ value }}
+    {% endif %}
+  {% endif %}
+</test>
+
+<test name="comments">
+  {% comment %}
+    This won't appear in the output
+  {% endcomment %}
+</test>
+
+<test name="nested variables">
+  {{ user.preferences.theme | default: default_theme }}
+  {{ data.items[0].values[forloop.index0] }}
+</test>
+
+<test name="inline conditionals">
+  <span class="{% if current == page %}
+      active
+    {% elsif visited %}
+      inactive
+    {% else %}
+      new
+    {% endif %}">
+    {{ text }}
+  </span>
+</test>
+
+<test name="filter chaining">
+  {{ value | replace: "foo", "bar" | capitalize | strip | truncate: 10, "..." }}
+</test>
+
+<test name="list comprehension">
+  {% assign filtered = items | where: "active", true %}
+  {% assign filtered = filtered | where_exp: "item", "item.score > 10" %}
+  <span>{{ filtered.size }}</span>
+</test>
+
+<test name="do expressions">
+  {% assign counter = namespace.counter | plus: 1 %}
+  {% assign namespace = namespace | merge: hash: "counter", counter %}
+  {{ namespace.counter }}
+</test>
+
+<test name="literal expressions">
+  {% assign obj = '{"key":"value","nested":{"data":[1,2,3]}}' | parse_json %}
+  {{ obj.nested.data[1] }}
+</test>
+
+<test name="custom syntax combinations">
+  {% if x < y and forloop.first or caller %}
+    {% include item_type | append: ".html" ignore missing %}
+  {% endif %}
+</test>
+
+<test name="expression tests">
+  {% if value and value contains value %}
+    {{ value }}
+  {% endif %}
+</test>
+
+<test name="case statement">
+  {% case user.role %}
+    {% when "admin" %}
+      Admin Panel
+    {% when "member" %}
+      Member Area
+    {% else %}
+      Guest View
+  {% endcase %}
+</test>
+
+<test name="multiline statements">
+  {% if condition %}
+    {% assign key = value | append: "_suffix" | upcase %}
+  {% else %}
+    {% assign key = "default" %}
+  {% endif %}
+  {% assign complex = hash: "key", key %}
+</test>
+
+<test name="self-referential variables">
+  {% assign ns_val = 1 %}
+  {% assign ns_val = ns_val | times: 2 %}
+  {{ ns_val }}
+</test>
+
+<test name="context manipulation">
+  {% assign foo = 42 %}
+  {% assign bar = "1,2,3" | split: "," %}
+  {{ foo }}
+  {{ bar[1] }}
+</test>
+
+<test name="broken html with valid jinja">
+  <div class="{{ cls }}" {% if attrs %} {{ attrs }} {% endif %}>
+    {{ value | replace: "</div>", "&lt;/div&gt;" }}
+  </div>
+</test>
+
+<test name="unicode handling">
+  {{ "こんにちは世界" | upcase }}
+  {% assign chars = "👋🌍🔥" | split: "" %}
+  {% for char in chars %}
+    {{ forloop.index }}
+    :
+    {{ char }}
+  {% endfor %}
+</test>
+
+<test name="capture">
+  {% capture %}
+    {% assign greeting = "Hello" %}
+    {{ greeting }}
+    , World!
+  {% endcapture %}
+</test>
+
+<test name="else and elif">
+  {%- if condition -%}
+    {{ value }}
+  {% elsif %}
+    {{ other_value }}
+  {% else %}
+    {{ fallback_value }}
+  {% endif %}
+</test>
+
+<test name="escaping">
+  {% raw %}
+    {{ This is literally preserved }}
+  {% endraw %}
+</test>
+
+<test name="quoted braces">
+  {{ '{{\'}}' }}
+  {{ '}}' }}
+</test>
