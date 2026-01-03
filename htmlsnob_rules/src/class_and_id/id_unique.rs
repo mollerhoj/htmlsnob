@@ -1,4 +1,4 @@
-use htmlsnob::ast::{Attribute, AttributeValue, Either, OpenTag, StringArea};
+use htmlsnob::ast::{Attribute, AttributeValue, Either, OpenTag};
 use htmlsnob::dynamic_format::dynamic_format;
 use htmlsnob::parser::ParseState;
 use htmlsnob::rule_trait::RuleTrait;

@@ -1,4 +1,4 @@
-use htmlsnob::ast::{Attribute, Either};
+use htmlsnob::ast::Attribute;
 use htmlsnob::dynamic_format::dynamic_format;
 use htmlsnob::rule_trait::RuleTrait;
 use htmlsnob::warning::Warning;

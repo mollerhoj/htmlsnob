@@ -1,4 +1,4 @@
-use htmlsnob::ast::{Position, Area, CloseTag, Node, OpenTag, Text};
+use htmlsnob::ast::{Position, Area, Text};
 use htmlsnob::dynamic_format::dynamic_format;
 use htmlsnob::parser::ParseState;
 use htmlsnob::rule_trait::RuleTrait;

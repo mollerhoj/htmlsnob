@@ -1,4 +1,4 @@
-use htmlsnob::ast::{Area, CloseTag, Comment, Doctype, OpenTag, TemplateExpression};
+use htmlsnob::ast::{CloseTag, OpenTag};
 use htmlsnob::dynamic_format::dynamic_format;
 use htmlsnob::parser::ParseState;
 use htmlsnob::rule_trait::RuleTrait;
