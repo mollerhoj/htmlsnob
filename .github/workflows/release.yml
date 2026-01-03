@@ -48,29 +48,29 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-publish-extension:
-    name: Publish VS Code Extension
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  publish-extension:
+      name: Publish VS Code Extension
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+        - name: Install Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
 
-      - name: Download all LSP binaries
-        uses: actions/download-artifact@v4
-        with:
-          path: htmlsnob_vscode_extension/bin/
-          merge-multiple: true
+        - name: Download all LSP binaries
+          uses: actions/download-artifact@v4
+          with:
+            path: htmlsnob_vscode_extension/bin/
+            merge-multiple: true
 
-      - name: Install vsce and Publish
-        working-directory: htmlsnob_vscode_extension
-        run: |
-          npm install
-          npx @vscode/vsce publish
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        - name: Install vsce and Publish
+          working-directory: htmlsnob_vscode_extension
+          run: |
+            npm install
+            npx @vscode/vsce publish
+          env:
+            VSCE_PAT: ${{ secrets.VSCE_PAT }}
