@@ -18,5 +18,6 @@
   "files": [
     "extension.js",
     "bin",
-  ],
+    "LICENCE.md"
+  ]
 }
