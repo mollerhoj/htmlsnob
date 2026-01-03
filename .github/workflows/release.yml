@@ -2,8 +2,8 @@ name: Release LSP
 
 on:
   push:
-    branches:
-      - '**'
+    tags:
+      - 'v*'
 
 jobs:
   build:
