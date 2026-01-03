@@ -1,12 +1,31 @@
-const vscode = require('vscode');
+const os = require('os');
+const path = require('path');const vscode = require('vscode');
 const clientNode = require("vscode-languageclient/node");
 const path = require('path');
 
+function getBinaryPath(context) {
+    const platform = os.platform();
+    let binaryName = '';
+
+    switch (platform) {
+        case 'win32':
+            binaryName = 'htmlsnob_lsp-windows-x86_64.exe';
+            break;
+        case 'darwin':
+            binaryName = 'htmlsnob_lsp-macos-x86_64';
+            break;
+        case 'linux':
+            binaryName = 'htmlsnob_lsp-linux';
+            break;
+        default:
+            throw new Error(`Unsupported platform: ${platform}`);
+    }
+
+    return path.join(context.extensionPath, 'bin', binaryName);
+}
 
 function activate(context) {
-  const serverPath = context.asAbsolutePath(path.join('..', 'target', 'debug', 'htmlsnob_lsp'));
-
-  
+  const serverPath = getBinaryPath(context);
 
   const serverOptions = {
     run: { command: serverPath },
