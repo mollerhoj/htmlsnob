@@ -41,6 +41,12 @@ jobs:
             mv target/release/htmlsnob_lsp ${{ matrix.asset_name }}
           fi
 
+      - name: Upload Artifact to use in subsequent jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset_name }}
+          path: ${{ matrix.asset_name }}
+
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
         with:
