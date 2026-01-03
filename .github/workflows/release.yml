@@ -67,6 +67,12 @@ jobs:
             path: htmlsnob_vscode_extension/bin/
             merge-multiple: true
 
+        - name: Set Extension Version
+          working-directory: htmlsnob_vscode_extension
+          run: |
+            CLEAN_VERSION=${GITHUB_REF_NAME#v} # Remove the 'v' prefix if it exists
+            npm version $CLEAN_VERSION --no-git-tag-version
+
         - name: Install vsce and Publish
           working-directory: htmlsnob_vscode_extension
           run: |
