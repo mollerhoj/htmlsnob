@@ -8,4 +8,3 @@ htmlsnob = { path = "../htmlsnob" }
 htmlsnob_rules = { path = "../htmlsnob_rules" }
 tokio = { version = "1.43.0", features = ["full"] }
 tower-lsp = "0.20.0"
-

@@ -1,0 +1,49 @@
+name: Release LSP
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: htmlsnob_lsp-linux
+            asset_name: htmlsnob_lsp-linux-x86_64
+          - os: windows-latest
+            artifact_name: htmlsnob_lsp.exe
+            asset_name: htmlsnob_lsp-windows-x86_64.exe
+          - os: macos-latest
+            artifact_name: htmlsnob_lsp
+            asset_name: htmlsnob_lsp-macos-x86_64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Release
+        run: cargo build -p htmlsnob_lsp --release
+
+      - name: Rename binary (for identification)
+        shell: bash
+        run: |
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            mv target/release/htmlsnob_lsp.exe ${{ matrix.asset_name }}
+          else
+            mv target/release/htmlsnob_lsp ${{ matrix.asset_name }}
+          fi
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ matrix.asset_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
