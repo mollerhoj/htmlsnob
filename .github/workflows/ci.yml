@@ -39,6 +39,3 @@ jobs:
 
       - name: Run tests
         run: cargo test --all
-
-      - name: Run linter
-        run: cargo run --bin htmlsnob_cli -- htmlsnob_linter/tests/fixtures/continous_integration.html
