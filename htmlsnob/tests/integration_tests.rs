@@ -123,7 +123,7 @@ fn test_template_languages() {
         "jinja2.html.jinja2",
         "liquid.html.liquid",
         "mustache.html.mustache",
-        //"erb.html.erb", // Not supported yet
+        "erb.html.erb",
         //"twig.html.twig", // Not supported yet
     ]
     .iter()

@@ -4,17 +4,16 @@
 </test>
 <test name="control structures">
   <% items.each do |item| %>
-  <li class="<%= item.active? ? 'active' : 'inactive' %>"><%= item.name %></li>
+    <li class="<%= item.active? ? 'active' : 'inactive' %>"><%= item.name %></li>
   <% end %>
 </test>
 <test name="nested control structures">
-  <% groups.each do |group| %>
-  <% if group.members.any? %>
-  <li class="<%= 'current' if group.members.first == current_user %>">
-    <%= group.name %>
-  </li>
-  <% end %>
-  <% end %>
+  <% y do |x| %>
+    <% if group.members.any? %>
+      <li class="<%= 'current' if group.members.first == current_user %>">
+        <%= group.name %>
+      </li>
+    <% end %>
   <% end %>
 </test>
 <test name="complex expressions">
@@ -28,3 +27,16 @@
   <%# This is a comment that wont appear in the output %>
   <%= 'Visible text' %>
 </test>
+<test name="case statements">
+  <% case status %>
+  <% when 'active' %>
+    <span class="active">Active</span>
+  <% when 'inactive' %>
+    <span class="inactive">Inactive</span>
+  <% else %>
+    <span class="unknown">Unknown</span>
+  <% end %>
+</test>
+
+TODO: Consider multi-line template-expressions
+TODO: user.each { |item| ... }

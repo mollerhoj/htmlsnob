@@ -96,19 +96,19 @@ pub struct CloseTag {
 
 #[derive(Debug, PartialEq, Clone)]
 pub enum Construct {
-    Statement,
-    Expression,
-    If,
-    Else,
-    EndIf,
-    Loop,
-    EndLoop,
-    Switch,
-    Case,
-    EndSwitch,
-    Block,
-    EndBlock,
-    Comment,
+    Statement,  // TODO: Change to:
+    Expression, // Statement
+    If,         // Open
+    Else,       // Else
+    EndIf,      // Close
+    Loop,       // Open
+    EndLoop,    // Close
+    Switch,     // Open
+    Case,       // Open
+    EndSwitch,  // Close
+    Block,      // Open
+    EndBlock,   // Close
+    Comment,    // Comment
 }
 
 #[derive(Debug, PartialEq, Clone)]

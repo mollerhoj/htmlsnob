@@ -564,7 +564,7 @@ impl Parser {
 
         TemplateLanguage::constructs(&self.template_language)
             .into_iter()
-            .any(|c| self.peek_str(c.0))
+            .any(|construct| self.peek_regex(&construct.0))
     }
 
     fn parse_template_expression(&mut self) -> TemplateExpression {
@@ -573,7 +573,7 @@ impl Parser {
 
         let construct = TemplateLanguage::constructs(&self.template_language)
             .into_iter()
-            .find(|c| self.peek_str(c.0))
+            .find(|construct| self.peek_regex(&construct.0))
             .unwrap_or_else(|| panic!("No matching construct found for input"));
 
         let mut quote = None;
@@ -602,8 +602,8 @@ impl Parser {
                 }
             }
 
-            if quote.is_none() && self.peek_str(construct.2) {
-                self.consume_str(construct.2);
+            if quote.is_none() && self.peek_regex(&construct.2) {
+                self.consume_regex(&construct.2);
                 break;
             }
 
@@ -655,6 +655,27 @@ impl Parser {
             }
         }
         true
+    }
+
+    fn peek_regex(&self, regex: &regex::Regex) -> bool {
+        let remaining_input: String = self.input[self.cursor..].iter().collect();
+        regex.is_match(&remaining_input)
+    }
+
+    fn consume_regex(&mut self, regex: &regex::Regex) {
+        let remaining_input: String = self.input[self.cursor..].iter().collect();
+        if let Some(regex_match) = regex.find(&remaining_input) {
+            assert_eq!(
+                regex_match.start(),
+                0,
+                "Regex did not match at the current position"
+            );
+            for _ in 0..regex_match.end() {
+                self.advance();
+            }
+        } else {
+            panic!("Regex did not match the input");
+        }
     }
 
     fn peek_any(&self, list: &[&str]) -> bool {
