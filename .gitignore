@@ -4,3 +4,7 @@ target/
 htmlsnob_test_data_fetcher/output/
 node_modules/
 TODO.md
+htmlsnob_ruby/bin/
+htmlsnob_ruby/target/
+htmlsnob_ruby/tmp/
+
