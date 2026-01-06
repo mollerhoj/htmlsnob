@@ -1,0 +1,15 @@
+[package]
+name = "htmlsnob_ruby"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jens Dahl Møllerhøj <mollerhoj3@gmail.com>"]
+license = "MIT"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+htmlsnob_cli = { path = "../../../htmlsnob_cli" }
+htmlsnob_rules = { path = "../../../htmlsnob_rules" }
+magnus = { version = "0.6.2" }

@@ -1,0 +1,3 @@
+[[rules]]
+kind = "missing_close_tag_disallowed"
+except_tags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"] # void elements
