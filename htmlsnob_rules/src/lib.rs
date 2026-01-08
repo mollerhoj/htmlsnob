@@ -126,6 +126,11 @@ pub mod tags {
     pub mod tag_name_whitelist;
 }
 
+pub mod content_model {
+    /// Enforces that a tag is allowed within its ancestor according to content model categories.
+    pub mod content_model_categories;
+}
+
 pub fn registry() -> Registry {
     Registry::new()
         // ---- Attributes -------------------------------------------------------------------------
@@ -183,4 +188,6 @@ pub fn registry() -> Registry {
         )
         .register_rule::<tags::missing_close_tag_disallowed::Rule>("missing_close_tag_disallowed")
         .register_rule::<tags::missing_open_tag_disallowed::Rule>("missing_open_tag_disallowed")
+        // ---- Content Model -------------------------------------------------------------------------
+        .register_rule::<content_model::content_model_categories::Rule>("content_model_categories")
 }
