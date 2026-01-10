@@ -82,8 +82,8 @@ pub mod structure {
     /// Enforces that an element has one of the specified ancestor elements at some level.
     pub mod ancestor_requirement;
     //
-    //    /// Enforces that an element does not have any of the specified direct child elements.
-    //    pub mod child_blacklist;
+    /// Enforces that an element does not have any of the specified direct child elements.
+    pub mod child_blacklist;
     //    /// Enforces that an element has all of the specified direct child elements.
     pub mod child_requirement;
     /// Enforces that an element only has the specified direct child elements.
@@ -91,6 +91,8 @@ pub mod structure {
     //
     /// Enforces that an element contains all of the specified descendant elements at some depth.
     pub mod descendant_requirement;
+
+    pub mod descendant_blacklist;
     //
     /// Enforces that the specified elements appear only once in the entire document.
     pub mod duplicate_elements_blacklist;
@@ -175,8 +177,10 @@ pub fn registry() -> Registry {
         )
         .register_rule::<structure::ancestor_requirement::Rule>("ancestor_requirement")
         .register_rule::<structure::child_requirement::Rule>("child_requirement")
+        .register_rule::<structure::child_blacklist::Rule>("child_blacklist")
         .register_rule::<structure::descendant_requirement::Rule>("descendant_requirement")
         .register_rule::<structure::maximum_nesting_depth::Rule>("maximum_nesting_depth")
+        .register_rule::<structure::descendant_blacklist::Rule>("descendant_blacklist")
         // ---- Tags  ------------------------------------------------------------------------------
         .register_rule::<tags::self_closing_tag_style::Rule>("self_closing_tag_style")
         .register_rule::<tags::tag_name_blacklist::Rule>("tag_name_blacklist")

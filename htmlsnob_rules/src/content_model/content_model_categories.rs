@@ -26,21 +26,32 @@ pub struct Rule {
     tags: HashMap<String, TagContentModel>,
 }
 
+#[derive(Debug, Clone, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "snake_case")]
+enum Category {
+    Flow,
+    Phrasing,
+    Sectioning,
+    Heading,
+    Interactive,
+    Metadata,
+}
+
 #[derive(Debug, Clone, Deserialize)]
 pub struct TagContentModel {
-    categories: HashSet<String>,
+    categories: HashSet<Category>,
     #[serde(default)]
     is_special_case: bool,
     #[serde(default)]
     is_transparent: bool,
     #[serde(default)]
-    child_category_whitelist: HashSet<String>,
+    child_category_whitelist: HashSet<Category>,
     #[serde(default)]
     child_tag_whitelist: HashSet<String>,
 }
 
 fn default_error_message() -> String {
-    "Tag `{tag}` is not allowed within `{ancestor}`".to_string()
+    "`{tag}` is not allowed within `{ancestor}`".to_string()
 }
 
 impl RuleTrait for Rule {
@@ -82,8 +93,8 @@ impl RuleTrait for Rule {
             return None;
         }
 
-        let categories: &HashSet<String> = &self.tags.get(tag_name)?.categories;
-        let category_whitelist: &HashSet<String> =
+        let categories: &HashSet<Category> = &self.tags.get(tag_name)?.categories;
+        let category_whitelist: &HashSet<Category> =
             &self.tags.get(parent_tag_name)?.child_category_whitelist;
         let child_tag_whitelist: &HashSet<String> =
             &self.tags.get(parent_tag_name)?.child_tag_whitelist;
@@ -291,7 +302,7 @@ mod tests {
         q.child_category_whitelist = ["phrasing", ]
         rp.categories = []
         rp.child_category_whitelist = []
-        rp.child_tag_whitelist = ["text", ]
+        rp.child_tag_whitelist = []
         rt.categories = []
         rt.child_category_whitelist = ["phrasing", ]
         ruby.categories = ["flow", "phrasing", ]
@@ -301,7 +312,7 @@ mod tests {
         samp.categories = ["flow", "phrasing", ]
         samp.child_category_whitelist = ["phrasing", ]
         script.categories = ["metadata", "flow", "phrasing", ]
-        script.child_category_whitelist = ["text", ]
+        script.child_category_whitelist = []
         search.categories = ["flow", ]
         search.child_category_whitelist = ["flow", ]
         section.categories = ["flow", ]
@@ -321,7 +332,7 @@ mod tests {
         strong.categories = ["flow", "phrasing", ]
         strong.child_category_whitelist = ["phrasing", ]
         style.categories = ["metadata", ]
-        style.child_category_whitelist = ["text", ]
+        style.child_category_whitelist = []
         sub.categories = ["flow", "phrasing", ]
         sub.child_category_whitelist = ["phrasing", ]
         summary.categories = []
@@ -341,7 +352,7 @@ mod tests {
         template.categories = ["metadata", "flow", "phrasing", ]
         template.is_special_case = true
         textarea.categories = ["flow", "phrasing", "interactive", ]
-        textarea.child_category_whitelist = ["text", ]
+        textarea.child_category_whitelist = []
         tfoot.categories = []
         tfoot.child_category_whitelist = []
         tfoot.child_tag_whitelist = ["tr", "script", "template", ]
@@ -353,7 +364,7 @@ mod tests {
         time.categories = ["flow", "phrasing", ]
         time.is_special_case = true
         title.categories = ["metadata", ]
-        title.child_category_whitelist = ["text", ]
+        title.child_category_whitelist = []
         tr.categories = []
         tr.child_category_whitelist = []
         tr.child_tag_whitelist = ["td", "th", "script", "template", ]
@@ -394,7 +405,7 @@ mod tests {
             r#"
                <abbr><address>Hello</address></abbr>
                      ---------     ----------
-                     content_model_categories: Tag `address` is not allowed within `abbr`
+                     content_model_categories: `address` is not allowed within `abbr`
             "#,
             CONFIG,
             &registry(),
@@ -407,7 +418,7 @@ mod tests {
             r#"
                <abbr><a><address>Hello</address></a></abbr>
                         ---------     ----------
-                        content_model_categories: Tag `address` is not allowed within `abbr`
+                        content_model_categories: `address` is not allowed within `abbr`
             "#,
             CONFIG,
             &registry(),

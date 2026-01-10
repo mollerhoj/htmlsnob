@@ -6,6 +6,11 @@ pub struct Validator<'a> {
 
 impl<'a> Validator<'a> {
     pub fn new(config: &'a mut Config) -> Self {
+        // Initialize rules
+        for rule in config.rules.iter_mut() {
+            rule.build();
+        }
+
         Validator { config }
     }
 

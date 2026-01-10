@@ -17,5 +17,9 @@
     <homemade> </homemade> -- Tag `homemade` is not allowed
     <1-p></1-p> -- Tag name `1-p` must match the regexp `^[A-Za-z][A-Za-z0-9.-]*$`
     <P></P> -- Tag name "P" should be in lowercase, change to "p"
+    <footer><header>Hello World</header></footer> -- `header` not allowed within `footer`
+    <address><span><h1>Hello World</h1></span></address> -- `h1` not allowed within `address`
+    <abbr><a><address>Hello</address></a></abbr> -- `address` is not allowed within `abbr`
+
   </body>
 </html>

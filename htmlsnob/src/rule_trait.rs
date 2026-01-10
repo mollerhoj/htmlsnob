@@ -4,6 +4,7 @@ use crate::warning::Warning;
 use std::fmt::Debug;
 
 pub trait RuleTrait: Debug + Send + Sync {
+    fn build(&mut self) {}
     fn reset_state(&mut self) {}
     fn apply_tag(
         &self,
