@@ -421,9 +421,6 @@ wbr.child_category_whitelist = []
 
 # TODO: All structure rules ABOVE
 
-[[rules]]
-kind = "missing_close_tag_disallowed"
-except_tags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"] # void elements
 
 [[rules]]
 kind = "missing_end_bracket_disallowed"
@@ -432,9 +429,11 @@ kind = "missing_end_bracket_disallowed"
 kind = "missing_open_tag_disallowed"
 
 [[rules]]
-kind = "self_closing_tag_style"
-style = "closed" 
-tags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"] # void elements
+kind = "self_closing_tag_disallowed"
+except_tags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"] # void elements
+
+[[rules]]
+kind = "missing_close_tag_disallowed"
 
 [[rules]]
 error_message = "Tag `{name}` is deprecated."

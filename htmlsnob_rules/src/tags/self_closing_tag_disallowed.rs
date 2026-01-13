@@ -1,4 +1,4 @@
-use htmlsnob::ast::{CloseTag, OpenTag};
+use htmlsnob::ast::OpenTag;
 use htmlsnob::dynamic_format::dynamic_format;
 use htmlsnob::parser::ParseState;
 use htmlsnob::rule_trait::RuleTrait;
@@ -6,12 +6,14 @@ use htmlsnob::warning::Warning;
 use htmlsnob::WarningSeverity;
 use serde::Deserialize;
 
-/// Enforces that open tags have a corresponding close tag.
+/// Enforces that only some tags are allowed to be self closing.
 #[derive(Debug, Clone, Deserialize)]
 pub struct Rule {
     #[serde(default)]
     name: String,
     kind: String,
+    #[serde(default)]
+    pub except_tags: Vec<String>,
     #[serde(default = "default_error_message")]
     pub error_message: String,
     #[serde(default)]
@@ -19,23 +21,16 @@ pub struct Rule {
 }
 
 fn default_error_message() -> String {
-    "Open tag `{name}` is missing close tag".to_string()
+    "`{name}` is not allowed to be self-closing".to_string()
 }
 
 impl RuleTrait for Rule {
-    fn apply_tag(
-        &self,
-        open_tag: Option<&OpenTag>,
-        close_tag: Option<&CloseTag>,
-        _parse_state: &ParseState,
-    ) -> Option<Warning> {
-        let open_tag = open_tag?;
-
-        if open_tag.self_closed {
+    fn apply_open_tag(&self, open_tag: &mut OpenTag, _parse_state: &ParseState) -> Option<Warning> {
+        if !open_tag.self_closed {
             return None;
         }
 
-        if close_tag.is_some() {
+        if self.except_tags.contains(&open_tag.name) {
             return None;
         }
 
@@ -57,26 +52,24 @@ mod tests {
     use htmlsnob::test_utils::tests::test_case;
 
     const CONFIG: &str = r#"
-        template_language = "handlebars"
-
         [[rules]]
-        kind = "missing_close_tag_disallowed"
+        kind = "self_closing_tag_disallowed"
         except_tags = ["br"]
     "#;
 
     #[test]
     fn good_case() {
-        test_case("<p></p>", CONFIG, &registry())
+        test_case("<br/>", CONFIG, &registry())
     }
 
     #[test]
     fn bad_case() {
         test_case(
             r#"
-            <p><br>
-            ---
-            missing_close_tag_disallowed: Open tag `p` is missing close tag
-            "#,
+            <p/>
+            ----
+            self_closing_tag_disallowed: `p` is not allowed to be self-closing
+        "#,
             CONFIG,
             &registry(),
         )

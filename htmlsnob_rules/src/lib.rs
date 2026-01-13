@@ -113,8 +113,8 @@ pub mod tags {
     pub mod missing_end_bracket_disallowed;
     /// Enforces that all closing tags have a matching opening tag.
     pub mod missing_open_tag_disallowed;
-    /// Enforces that self-closing tags are with a specified style.
-    pub mod self_closing_tag_style;
+    /// Enforces that that only some elements are allowed to be self-closing.
+    pub mod self_closing_tag_disallowed;
     /// Enforces that the document does not use any of the specified tags.
     pub mod tag_name_blacklist;
     /// Enforces that the tag name matches a specified casing style.
@@ -180,7 +180,7 @@ pub fn registry() -> Registry {
         .register_rule::<structure::descendant_blacklist::Rule>("descendant_blacklist")
         .register_rule::<structure::child_order::Rule>("child_order")
         // ---- Tags  ------------------------------------------------------------------------------
-        .register_rule::<tags::self_closing_tag_style::Rule>("self_closing_tag_style")
+        .register_rule::<tags::self_closing_tag_disallowed::Rule>("self_closing_tag_disallowed")
         .register_rule::<tags::tag_name_blacklist::Rule>("tag_name_blacklist")
         .register_rule::<tags::tag_name_casing::Rule>("tag_name_casing")
         .register_rule::<tags::tag_name_regexp::Rule>("tag_name_regexp")

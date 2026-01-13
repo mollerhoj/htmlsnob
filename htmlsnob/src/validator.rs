@@ -54,6 +54,11 @@ impl<'a> Validator<'a> {
                         warnings.extend(rule.apply_attribute(attribute));
                         warnings.extend(rule.apply_attribute_vec(attribute));
                     }
+
+                    if open_tag.self_closed {
+                        warnings.extend(rule.apply_tag(Some(open_tag), None, parse_state));
+                        warnings.extend(rule.apply_tag_vec(Some(open_tag), None, parse_state));
+                    }
                 }
                 Node::CloseTag(close_tag) => {
                     let mut open_tag = None;
