@@ -482,16 +482,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "htmlsnob_cli"
-version = "0.1.0"
-dependencies = [
- "clap",
- "glob",
- "htmlsnob",
- "htmlsnob_rules",
-]
-
-[[package]]
 name = "htmlsnob_lsp"
 version = "0.1.0"
 dependencies = [
@@ -508,6 +498,16 @@ dependencies = [
  "htmlsnob",
  "regex",
  "serde",
+]
+
+[[package]]
+name = "htmlsnob_runner"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "glob",
+ "htmlsnob",
+ "htmlsnob_rules",
 ]
 
 [[package]]

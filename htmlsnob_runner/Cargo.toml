@@ -1,5 +1,5 @@
 [package]
-name = "htmlsnob_cli"
+name = "htmlsnob_runner"
 version = { workspace = true }
 edition = { workspace = true }
 

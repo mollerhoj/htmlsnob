@@ -10,6 +10,6 @@ publish = false
 crate-type = ["cdylib"]
 
 [dependencies]
-htmlsnob_cli = { path = "../../../htmlsnob_cli" }
+htmlsnob_runner = { path = "../../../htmlsnob_runner" }
 htmlsnob_rules = { path = "../../../htmlsnob_rules" }
 magnus = { version = "0.6.2" }

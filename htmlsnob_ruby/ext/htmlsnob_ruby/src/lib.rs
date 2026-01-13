@@ -1,7 +1,7 @@
 use magnus::{function, prelude::*, Error, RHash, Ruby, Symbol};
 
 fn run_simple(file_paths: Vec<String>, config: Option<String>) -> (i32, String) {
-    htmlsnob_cli::run(htmlsnob_cli::SimpleArgs {
+    htmlsnob_runner::run(htmlsnob_runner::SimpleArgs {
         paths: file_paths,
         autofix: false,
         config,

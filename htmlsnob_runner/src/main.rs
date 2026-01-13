@@ -1,6 +1,6 @@
 use clap::Parser;
-use htmlsnob_cli::run;
-use htmlsnob_cli::SimpleArgs;
+use htmlsnob_runner::run;
+use htmlsnob_runner::SimpleArgs;
 use std::process;
 
 #[derive(Parser, Debug)]

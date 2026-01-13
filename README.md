@@ -70,10 +70,10 @@ Add the [HTMLsnob extension](https://marketplace.visualstudio.com/items?itemName
 `cargo install htmlsnob`
 
 ```
-htmlsnob_cli --help
+htmlsnob_runner --help
 Check HTML files for issues
 
-Usage: htmlsnob_cli [OPTIONS] [PATHS]...
+Usage: htmlsnob_runner [OPTIONS] [PATHS]...
 
 Arguments:
   [PATHS]...  Input paths [default: **/*.html]
@@ -222,7 +222,7 @@ Validation rules function as hooks within the parsing lifecycle, allowing them t
 ```
 htmlsnob: The core engine handling parsing and formatting - independent of specific validations and autofixes
 htmlsnob_rules: A package with a standard set of validation rules 
-htmlsnob_cli: A command line interface that uses the htmlsnob engine
+htmlsnob_runner: A command line interface that uses the htmlsnob engine
 htmlsnob_lsp: A Language Server that the uses the htmlsnob engine
 htmlsnob_vscode_extension: A VS Code extension that uses the htmlsnob engine
 ```

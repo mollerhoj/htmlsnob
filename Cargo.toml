@@ -4,7 +4,7 @@ default-members = ["htmlsnob"]
 members = [
     "htmlsnob",
     "htmlsnob_lsp",
-    "htmlsnob_cli",
+    "htmlsnob_runner",
     "htmlsnob_test_data_fetcher",
     "htmlsnob_scripts"
 ]

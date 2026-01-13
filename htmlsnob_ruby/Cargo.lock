@@ -199,7 +199,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "htmlsnob_cli"
+name = "htmlsnob_runner"
 version = "0.1.0"
 dependencies = [
  "clap",
@@ -212,7 +212,7 @@ dependencies = [
 name = "htmlsnob_ruby"
 version = "0.1.0"
 dependencies = [
- "htmlsnob_cli",
+ "htmlsnob_runner",
  "htmlsnob_rules",
  "magnus",
 ]
