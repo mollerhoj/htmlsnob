@@ -2,9 +2,15 @@
 name = "htmlsnob_runner"
 version = { workspace = true }
 edition = { workspace = true }
+authors = { workspace = true }
+description = { workspace = true }
+license = { workspace = true }
+documentation = { workspace = true }
+readme = { workspace = true }
+repository = { workspace = true }
 
 [dependencies]
 clap = { version = "4.5.35", features = ["derive"] }
 glob = "0.3.2"
-htmlsnob = { path = "../htmlsnob" }
-htmlsnob_rules = { path = "../htmlsnob_rules" }
+htmlsnob = { path = "../htmlsnob", version = "0.1.1" }
+htmlsnob_rules = { path = "../htmlsnob_rules", version = "0.1.1" }
