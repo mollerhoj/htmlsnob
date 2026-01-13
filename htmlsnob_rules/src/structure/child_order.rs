@@ -41,7 +41,8 @@ fn default_error_message() -> String {
 // - content_model_categories
 // - ... and all other rules using the open_tag_index field..
 //
-//
+// Ways to deal with this:
+// - Could be ignored, as
 //
 
 impl RuleTrait for Rule {

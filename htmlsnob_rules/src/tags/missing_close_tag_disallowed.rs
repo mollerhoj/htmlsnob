@@ -73,7 +73,7 @@ mod tests {
     fn bad_case() {
         test_case(
             r#"
-            <p><br>
+            <p>
             ---
             missing_close_tag_disallowed: Open tag `p` is missing close tag
             "#,
