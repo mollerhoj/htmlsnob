@@ -19,7 +19,7 @@ The highly configurable architecture allows you to enforce your exact coding sta
 
 # Validation examples
 
-```
+```html
 <html> -- Missing required attributes: lang
   <body>
     <p ="my-class">Hello World</p> -- Attribute name missing, expected a name before the = sign
@@ -89,7 +89,7 @@ Options:
 ## Neovim
 
 Download the binary as shown in the CLI section above, and use it:
-```
+```lua
 local configs = require('lspconfig.configs')
 
 if not configs.htmlsnob_lsp then
@@ -154,7 +154,7 @@ While many validations can be implemented by configuring the rules shipped with 
 Rules a configured via a toml config file. See `default_config.toml` for the default rules. This should give you an idea of how to configure your own rules.
 
 Each rule has a `kind` which links it to a specific rule implementation. For example, this rule enforces that attribute names are in kebab-case:
-```
+```toml
 [[rules]]
 name = "attribute_name_casing_style"  # Unique name for the rule used in error messages. Defaults to the kind if not specified
 kind = "attribute_name_casing_style"  # Links to the rule implementation
@@ -166,7 +166,7 @@ style = "kebab_case"                  # The desired casing style, can be "kebab_
 ## Ignoring lines
 
 If you want HTMLsnob to ignore parts of your html files, add `ignore below` and `ignore above` comments to your file:
-```
+```html
 <!-- ignore below -->
 <p>Any issues here will be ignored.</p>
 <!-- ignore above -->
@@ -233,7 +233,7 @@ HTMLsnob is designed to be easily extensible with new rules.
 
 To implement a new rule, implement the `RuleTrait`. To use the new rule, add it to the Registry. A minimal example is shown below.
 
-```
+```rust
 use htmlsnob_engine::{
     ast::OpenTag, config::Config, lint, parser::ParseState, registry::Registry,
     rule_trait::RuleTrait, warning::Warning, WarningSeverity,
