@@ -29,6 +29,20 @@ fn default_error_message() -> String {
 // But: It means that the child_indexes approach may be flawed?
 // 1) Once we realize a tag is not closed, we can more it's child indexes to the parent?
 // 2) Or we can track in this rule somehow? More testing needed..
+//
+//
+// ISSUE: Quite a few rules rely on knowing its parent tag. But it can only know once the parent
+// tag has been closed...
+// Offending rules:
+// - text_disallowed
+// - child_whitelist
+// - child_blacklist
+// - child_requirement
+// - content_model_categories
+// - ... and all other rules using the open_tag_index field..
+//
+//
+//
 
 impl RuleTrait for Rule {
     fn apply_tag(
