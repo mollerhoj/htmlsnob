@@ -13,7 +13,7 @@ resolver = "2"
 [workspace.package]
 authors = ["mollerhoj"]
 edition = "2021"
-version = "0.1.0"
+version = "0.1.1"
 description = "HTML validator, formatter and autofixer"
 license = "MIT"
 documentation = "https://github.com/mollerhoj/htmlsnob"
