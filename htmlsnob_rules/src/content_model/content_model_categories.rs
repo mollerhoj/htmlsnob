@@ -8,9 +8,9 @@ use serde::Deserialize;
 use std::collections::{HashMap, HashSet};
 
 // The following tags have a content model with special cases, and are ignored by this rule:
-// `audio`, `button`, `colgroup`, `datalist`, `details`, `div`, `dl`, `fieldset`, `figure`,
-// `head`, `hgroup`, `html`, `legend`, `optgroup`, `option`, `picture`, `ruby`, `select`,
-// `span`, `table`, `template`, `time`, `video`,
+// `audio`, `button`, `colgroup`, `datalist`, `details`, `dl`, `fieldset`, `figure`,
+// `hgroup`, `legend`, `optgroup`, `option`, `picture`, `ruby`, `select`,
+// `template`, `time`, `video`,
 
 /// Enforces that a tag is allowed within its ancestor according to content model categories.
 #[derive(Debug, Clone, Deserialize)]
@@ -31,6 +31,7 @@ pub struct Rule {
 enum Category {
     Flow,
     Phrasing,
+    Palpable,
     Sectioning,
     Heading,
     Interactive,

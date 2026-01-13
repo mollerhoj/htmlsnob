@@ -93,25 +93,41 @@ impl Runner {
             if !warnings.is_empty() {
                 success = false;
                 self.result.push_str(&format!("{}:\n", file_path.display()));
+
                 for warning in warnings {
-                    // Print the line of the file with the warning
-                    let line_number = warning.areas[0].start.line;
-                    let line_number_indentation = " ".repeat(line_number.to_string().len());
-                    let line = content.lines().nth(line_number).unwrap_or("");
-                    let mut truncated_message = warning.message.clone();
-                    if truncated_message.len() > 80 {
-                        truncated_message.truncate(80);
-                        truncated_message.push_str("...");
+                    let areas = warning.areas;
+
+                    let mut index = 0;
+                    while index < areas.len() {
+                        let mut areas_to_print = vec![areas[index].clone()];
+                        let line_number = areas[index].start.line;
+                        while index + 1 < areas.len() && areas[index + 1].start.line == line_number
+                        {
+                            areas_to_print.push(areas[index + 1].clone());
+                            index += 1;
+                        }
+                        let line_number_indentation = " ".repeat(line_number.to_string().len());
+                        let line = content.lines().nth(line_number).unwrap_or("");
+                        let mut truncated_message = warning.message.clone();
+                        if truncated_message.len() > 80 {
+                            truncated_message.truncate(80);
+                            truncated_message.push_str("...");
+                        }
+                        self.result
+                            .push_str(&format!("{}: {}\n", line_number, line));
+
+                        self.result.push_str(&format!(
+                            "{}  {} {}: {}\n",
+                            line_number_indentation,
+                            areas_to_string(&areas_to_print),
+                            warning.name,
+                            truncated_message
+                        ));
+                        index += 1;
+                        println!("Debug: index: {:?}", index);
                     }
-                    self.result
-                        .push_str(&format!("{}: {}\n", line_number, line));
-                    self.result.push_str(&format!(
-                        "{}  {} {}\n",
-                        line_number_indentation,
-                        range_to_string(warning.areas[0].clone()),
-                        truncated_message
-                    ));
                 }
+
                 self.result.push('\n');
             }
 
@@ -171,7 +187,14 @@ fn filter_ignored_files<P: AsRef<Path>>(files: Vec<P>, ignore_patterns: &[String
     result
 }
 
-fn range_to_string(range: Area) -> String {
-    let dashes = "-".repeat(range.end.column - range.start.column);
-    format!("{:>width$}", dashes, width = range.end.column)
+fn areas_to_string(areas: &[Area]) -> String {
+    let mut result = String::new();
+    let mut index = 0;
+    for area in areas {
+        let prefixed_spaces = " ".repeat(area.start.column - index);
+        let dashes = "-".repeat(area.end.column - area.start.column);
+        result.push_str(&format!("{}{}", prefixed_spaces, dashes));
+        index = area.end.column;
+    }
+    result
 }
